@@ -54,13 +54,12 @@
                         <img src="{{ $item->image_name }}" alt="">
                             <div class="hover-box">
                                 <div class="inner-hover">
-                                                <a class="category-post travel" href="travel.html">travel</a>
-                                    <h2><a href="single-post.html">Lorem ipsum dolor sit amet, consectetuer</a></h2>
+                                    <a class="category-post travel" href="#">Technology </a>
+                                <h2><a href="{{ URL::to('sme/technology/news/details/'.$item->id )}}">{{ $item->headline}}</a></h2>
                                     <ul class="post-tags">
-                                        <li><i class="fa fa-clock-o"></i><span>27 may 2013</span></li>
-                                        <li><a href="#"><i class="fa fa-comments-o"></i><span>23</span></a></li>
+                                       
                                     </ul>
-                                    <p>Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.</p>
+                                   
                                 </div>
                             </div>
                         </div>

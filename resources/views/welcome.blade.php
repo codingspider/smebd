@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.theme.css') }}" media="screen">
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/ticker-style.css') }}"/>
 	<link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" media="screen">
+	<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d8b17b4cb45ad0012b51dcd&product=inline-share-buttons' async='async'></script>
 
 </head>
 @php
@@ -331,8 +332,10 @@
 
 		</header>
 		<!-- End Header -->
+		<br>
 
-@yield('content')
+		@yield('content')
+		<br>
 
 		<!-- footer 
 			================================================== -->

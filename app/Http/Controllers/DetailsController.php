@@ -11,8 +11,9 @@ class DetailsController extends Controller
 
         $bank_news = DB::table('smes_and_bankers_news')->where('id', $id)->first();
   
-        $settings = DB::table('settings')->first();
-        return view('bank_news', compact('bank_news', 'settings'));
+       
+
+        return view('bank_news', compact('bank_news'));
        
     }
 
@@ -20,10 +21,10 @@ class DetailsController extends Controller
 
         $fashion_news_admins = DB::table('fashion_news_admins')->where('id', $id)->first();
 
-        $settings = DB::table('settings')->first();
+     
   
 
-        return view('fashion_news', compact('settings', 'fashion_news_admins'));
+        return view('fashion_news', compact( 'fashion_news_admins'));
 
 
     }
@@ -31,10 +32,9 @@ class DetailsController extends Controller
 
         $miscelleneous_news = DB::table('miscelleneous_news')->where('id', $id)->first();
 
-        $settings = DB::table('settings')->first();
-  
 
-        return view('miscelleneous_news', compact('settings', 'miscelleneous_news'));
+
+        return view('miscelleneous_news', compact( 'miscelleneous_news'));
 
 
     }
@@ -42,10 +42,10 @@ class DetailsController extends Controller
 
         $technology_news = DB::table('technology_news')->where('id', $id)->first();
 
-        $settings = DB::table('settings')->first();
+
   
 
-        return view('technology_news', compact('settings', 'technology_news'));
+        return view('technology_news', compact( 'technology_news'));
 
 
     }
@@ -53,10 +53,9 @@ class DetailsController extends Controller
 
         $blog_news = DB::table('sme_blogs')->where('id', $id)->first();
 
-        $settings = DB::table('settings')->first();
-  
 
-        return view('blog_news', compact('settings', 'blog_news'));
+
+        return view('blog_news', compact( 'blog_news'));
 
 
     }
