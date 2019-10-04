@@ -19,7 +19,7 @@
                         <div class="title-post">
                         <h1>{{$bank_news->headline}}</h1>
                             <ul class="post-tags">
-                                <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($technology->created_at))}}</li>
+                                <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($bank_news->created_at))}}</li>
                                 <li><i class="fa fa-user"></i>by <a href="#">{{$bank_news->news_provider}}</a></li>
                             
                             </ul>
@@ -72,197 +72,35 @@
 
                 <!-- sidebar -->
                 <div class="sidebar">
-
+@php
+     $services = DB::table('services')->get();
+@endphp
 
                     <div class="widget tab-posts-widget">
-
-                        <ul class="nav nav-tabs" id="myTab">
-                            <li class="active">
-                                <a href="#option1" data-toggle="tab">Popular</a>
-                            </li>
-                            <li>
-                                <a href="#option2" data-toggle="tab">Recent</a>
-                            </li>
-                            <li>
-                                <a href="#option3" data-toggle="tab">Top Reviews</a>
-                            </li>
-                        </ul>
-
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="option1">
-                                <ul class="list-posts">
-                                    <li>
-                                        <img src="upload/news-posts/listw1.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. </a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
+                        <h4 style="color:red;" href="#option1">Our products & Services </h4>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="option1">
+                                            <ul class="list-posts">
+                                                @foreach ($services as $item)
+                                                    
+                                            
+                                                <li>
+                                                    <img src="{{ $item->image}}" alt="">
+                                                    <div class="post-content">
+                                                    <h2><a href="{{ $item->link }}">{{ $item->service}}</a></h2>
+                                                       
+                                                    </div>
+                                                </li>
+    
+                                                @endforeach
                                             </ul>
                                         </div>
-                                    </li>
-
-                                    <li>
-                                        <img src="upload/news-posts/listw2.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Sed arcu. Cras consequat. </a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <img src="upload/news-posts/listw3.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Phasellus ultrices nulla quis nibh. Quisque a lectus.  </a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <img src="upload/news-posts/listw4.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Donec consectetuer ligula vulputate sem tristique cursus. </a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <img src="upload/news-posts/listw5.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi. </a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="tab-pane" id="option2">
-                                <ul class="list-posts">
-
-                                    <li>
-                                        <img src="upload/news-posts/listw3.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Phasellus ultrices nulla quis nibh. Quisque a lectus. </a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <img src="upload/news-posts/listw4.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Donec consectetuer ligula vulputate sem tristique cursus. </a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <img src="upload/news-posts/listw5.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.</a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <img src="upload/news-posts/listw1.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. </a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <img src="upload/news-posts/listw2.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Sed arcu. Cras consequat.</a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>										
-                            </div>
-                            <div class="tab-pane" id="option3">
-                                <ul class="list-posts">
-
-                                    <li>
-                                        <img src="upload/news-posts/listw4.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Donec consectetuer ligula vulputate sem tristique cursus. </a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <img src="upload/news-posts/listw1.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. </a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <img src="upload/news-posts/listw3.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Phasellus ultrices nulla quis nibh. Quisque a lectus.  </a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <img src="upload/news-posts/listw2.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Sed arcu. Cras consequat.</a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <img src="upload/news-posts/listw5.jpg" alt="">
-                                        <div class="post-content">
-                                            <h2><a href="single-post.html">Nam nulla quam, gravida non, commodo a, sodales sit amet, nisi.</a></h2>
-                                            <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>										
-                            </div>
-                        </div>
+                                      
+                                        
+                                    </div>
                     </div>
 
 
-                    <div class="widget subscribe-widget">
-                        <form class="subscribe-form">
-                            <h1>Subscribe to RSS Feeds</h1>
-                            <input type="text" name="sumbscribe" id="subscribe" placeholder="Email"/>
-                            <button id="submit-subscribe">
-                                <i class="fa fa-arrow-circle-right"></i>
-                            </button>
-                            <p>Get all latest content delivered to your email a few times a month.</p>
-                        </form>
-                    </div>
 
                     <div class="widget tags-widget">
 

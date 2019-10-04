@@ -1,7 +1,9 @@
 @extends('welcome')
 @section('title', 'Home')
 @section('content')
-
+@php
+    use Illuminate\Support\Str;
+@endphp
 		<!-- heading-news-section2
 			================================================== -->
             <section class="heading-news2">
@@ -11,10 +13,10 @@
                     <div class="ticker-news-box">
                         <span class="breaking-news">breaking news</span>
                         <ul id="js-news">
-                            <li class="news-item"><span class="time-news">11:36 pm</span>  <a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</a> Donec odio. Quisque volutpat mattis eros... </li>
-                            <li class="news-item"><span class="time-news">12:40 pm</span>  <a href="#">Dëshmitarja Abrashi: E kam parë Oliverin në turmë,</a> ndërsa neve na shpëtoi “çika Mille” </li>
-                            <li class="news-item"><span class="time-news">11:36 pm</span>  <a href="#">Franca do të bashkëpunojë me Kosovën në fushën e shëndetësisë. </a></li>
-                            <li class="news-item"><span class="time-news">01:00 am</span>  <a href="#">DioGuardi, kështu e mbrojti Kosovën në Washington, </a> para serbit Vejvoda </li>
+                        @foreach ($smes_and_bankers_news as $item)
+                            
+                            <li class="news-item"><span class="time-news">{{ date('d-m-Y', strtotime($item->created_at))}}</span>  <a href="{{ URL::to('sme/bankers/news/details/'.$item->id )}}">{{ $item->headline}} </a> - {{ Str::words($item->detail, '10', '...')}}</li>
+                            @endforeach
                         </ul>
                     </div>
     
@@ -245,14 +247,14 @@
                                             </div>
                                             <div class="col-sm-7">
                                                 <div class="post-content">
-                                                <h2><a href="single-post.html">{{ $item->headline }}</a></h2>
+                                                <h2><a href="{{ URL::to('sme/fashion/news/details/'. $item->id )}}">{{ $item->headline }}</a></h2>
                                                     <ul class="post-tags">
                                                         <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($item->created_at))}}</li>
                                                         <li><i class="fa fa-user"></i>by <a href="#">{{ $item->news_provider }}</a></li>
 
                                                     </ul>
                                                     <p>Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
-                                                    <a href="single-post.html" class="read-more-button"><i class="fa fa-arrow-circle-right"></i>Read More</a>
+                                                    <a href="{{ URL::to('sme/fashion/news/details/'. $item->id )}}" class="read-more-button"><i class="fa fa-arrow-circle-right"></i>Read More</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -285,7 +287,7 @@
     
                                 <div class="widget tab-posts-widget">
     
-                                        <h4 style="color:red;" href="#option1">Our products & Services </h4>
+                                    <h4 style="color:red;" href="#option1">Our products & Services </h4>
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="option1">
                                             <ul class="list-posts">

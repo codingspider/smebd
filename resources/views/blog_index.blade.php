@@ -1,10 +1,12 @@
 @extends('welcome')
 
-@section ('title', 'Miscelleneous News ')
+@section ('title', 'Blog News ')
 
 @section('content')
+@php
+    use Illuminate\Support\Str;
+@endphp
 
-================================================== -->
 <section class="block-wrapper">
     <div class="container">
         <div class="row">
@@ -13,57 +15,58 @@
                 <!-- block content -->
                 <div class="block-content">
 
-                    <!-- single-post box -->
-                    <div class="single-post-box">
-
-                        <div class="title-post">
-                        <h1>{{$miscelleneous_news->headline}}</h1>
-                            <ul class="post-tags">
-                                <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($technology->created_at))}}</li>
-                                <li><i class="fa fa-user"></i>by <a href="#">{{$miscelleneous_news->news_provider}}</a></li>
-                            
-                            </ul>
+                    <!-- grid box -->
+                    <div class="grid-box">
+                        <div class="title-section">
+                            <h1><span class="world">World</span></h1>
                         </div>
 
-                        <div class="share-post-box">
-                            <div class="sharethis-inline-share-buttons"></div>
+                        
+
+                        <div class="row">
+                            @foreach ($data as $item)
+                                
+                            <div class="col-md-6">
+                                <div style="height:600px" class="news-post standard-post2">
+                                    <div class="post-gallery">
+                                    <img src="{{ asset($item->image_name)}}" alt="">
+                                        <a class="category-post world" href="world.html">Trends</a>
+                                    </div>
+                                    <div class="post-title">
+                                    <h2><a href="{{ URL::to('sme/blog/news/details/'. $item->id)}}">{{ $item->headline}}</a></h2>
+                                        <ul class="post-tags">
+                                            <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($item->created_at))}}</li>
+                                        <li><i class="fa fa-user"></i>by <a href="#">{{ $item->news_provider}}</a></li>
+                                           
+                                        </ul>
+                                    </div>
+                                    <div class="post-content">
+                                        <p>{!! Str::words($item->detail, '20', '...') !!}</p>
+                                        <a href="{{ URL::to('sme/blog/news/details/'. $item->id)}}" class="read-more-button"><i class="fa fa-arrow-circle-right"></i>Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                           
                         </div>
-
-                        <div class="post-gallery">
-                            <img src="{{ asset($miscelleneous_news->image_name)}}" alt="">
-                            <span class="image-caption"> Description </span>
-                        </div>
-
-                        <div style="color:white" class="post-content">
-
-                            <p>{{$miscelleneous_news->short_description}}</p>
-                           <br>
-                           <p>{!! $miscelleneous_news->detail !!}</p>
-                            
-                        </div>
-
-
-                        <div class="post-tags-box">
-                            <ul class="tags-box">
-                                <li><i class="fa fa-tags"></i><span>Tags:</span></li>
-                                <li><a href="#">News</a></li>
-                                <li><a href="#">Fashion</a></li>
-                                <li><a href="#">Politics</a></li>
-                                <li><a href="#">Sport</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="share-post-box">
-                            <ul class="share-box">
-                                <div class="sharethis-inline-share-buttons"></div>
-                            </ul>
-                        </div>
-
-
+                        {{ $data->links('default') }}
                     </div>
-                    <!-- End single-post box -->
+                    <!-- End grid box -->
+
+         
+                    <!-- End google addsense -->
+
+                    <!-- grid box -->
+                    <div class="grid-box">
+
+                       
+                    </div>
+                    <!-- End grid box -->
+
+      
 
                 </div>
+                <!-- End block content -->
                 <!-- End block content -->
 
             </div>

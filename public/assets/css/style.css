@@ -796,7 +796,7 @@ header.fifth-style .navbar-header a.navbar-brand {
 /* =  General
 /*-------------------------------------------------*/
 body.boxed {
-  background: url('../upload/banners/back.jpg') center center fixed;
+ 
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
