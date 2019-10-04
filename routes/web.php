@@ -14,13 +14,20 @@ Route::get('news/submit', 'NewsController@news');
 
 Route::post ('/user/register', 'LoginController@register');
 
+
+
 Route::get('apply/for/loan', 'LoanController@form')->middleware('auth');
 
 Route::get('list/loan/request', 'LoanController@loan_request');
 
+Route::get('list/loan/view/{id}', 'LoanController@loan_request_details');
+Route::get('list/loan/approve/{id}', 'LoanController@loan_request_approve');
+Route::get('list/loan/cancel/{id}', 'LoanController@loan_request_cancel');
+Route::get('list/loan/delete/{id}', 'LoanController@loan_request_delete');
+
 Route::post('loan/aplication/form/submit', 'LoanController@create');
 
-//Route::get('list/loan/request', ['uses'=>'UserController@index', 'as'=>'users.index']);
+
 
 //Clear Cache facade value:
 Route::get('/clear-cache', function() {

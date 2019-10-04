@@ -2,7 +2,7 @@
 @extends('crudbooster::admin_template')
 @section('content')
 <head>
-    <title>Laravel 5.8 Datatables Tutorial - ItSolutionStuff.com</title>
+    <title></title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     
@@ -14,17 +14,32 @@
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 </head>
 <body>
-    
+    @if(session()->has('danger'))
+    <div class="alert alert-danger">
+        {{ session()->get('danger') }}
+    </div>
+    @endif
+    @if(session()->has('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+    @endif
+    @if(session()->has('warning'))
+    <div class="alert alert-warning">
+        {{ session()->get('warning') }}
+    </div>
+    @endif
 <div class="col-md-12">
    
-    <table class="table table-bordered data-table">
-        <thead>
-            <tr>
+    <table  class="table table-bordered data-table">
+        <thead bgcolor="#00FF00">
+            <tr >
                 <th>No</th>
-                <th>Name</th>
-                <th>Email</th>
+                <th>Business Name</th>
+                <th>Business Address</th>
                 <th>Loan Type </th>
                 <th>Loan Amount </th>
+                <th>Loan Status</th>
                 <th width="100px">Action</th>
             </tr>
         </thead>
@@ -44,10 +59,11 @@
         ajax: "{{ url('list/loan/request') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
+            {data: 'business_name', name: 'business_name'},
+            {data: 'business_address', name: 'business_address'},
             {data: 'loan_type', name: 'loan_type'},
             {data: 'loan_amount', name: 'loan_amount'},
+            {data: 'status', name: 'status'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
     });

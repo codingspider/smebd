@@ -57,6 +57,8 @@ class LoanController extends Controller
 
         Mail::to('rashed@optima-solution.com')->send(new SendMailable($request));
 
+        
+
         return back()->with('message', 'Your aplication has been sent! ');
     }
    
@@ -65,9 +67,7 @@ class LoanController extends Controller
     {
         if ($request->ajax()) {
             $data = DB::table('loan_applications')
-            ->join('users', 'users.id', '=', 'loan_applications.client_id')
             
-            ->select('loan_applications.*', 'users.*')
             ->get();
 
             return Datatables::of($data)
@@ -76,12 +76,54 @@ class LoanController extends Controller
    
                           
      
-                        return '<a href="view/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i> View</a> <a href="delte/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Approve</a> <a href="delte/'.$row->id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-remove"></i>Cancel</a> <a href="delte/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                        return '<a href="view/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i> View</a> <a href="approve/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Approve</a> <a href="cancel/'.$row->id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-remove"></i>Cancel</a> <a href="delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
                     })
                     ->rawColumns(['action'])
                     ->make(true);
         }
       
         return view('loan_request');
+    }
+
+    public function loan_request_details($id){
+
+        $data = DB::table('loan_applications')
+
+        ->join('users', 'users.id', '=', 'loan_applications.client_id')
+            
+        ->select('loan_applications.*', 'users.*')
+
+        ->where('loan_applications.id', $id)->first();
+
+
+        return view ('loan_request_details', compact('data'));
+    }
+
+    
+    public function loan_request_approve($id){
+        $data = DB::table('loan_applications')
+        
+        ->where('id', $id)->update([
+            'status' => 'Approved',
+            'status_value' => 1,
+        ]);
+
+        return back()->with('success', 'Loan has been approved successfully.');
+    }
+    public function loan_request_cancel ($id){
+        $data = DB::table('loan_applications')
+        
+        ->where('id', $id)->update([
+            'status' => 'Cancelled',
+            'status_value' => 0,
+        ]);
+
+        return back()->with('warning', 'Loan has been cancelled successfully.');
+    }
+    public function loan_request_delete ($id){
+        $data = DB::table('loan_applications')
+        
+        ->where('id', $id)->delete();
+        return back()->with('danger', 'Requested data has been deleted successfully.');
     }
 }
