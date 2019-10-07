@@ -328,6 +328,18 @@
 
 	    }
 
+		public function getAdd() {
+			//Create an Auth
+			if(!CRUDBooster::isCreate() && $this->global_privilege==FALSE || $this->button_add==FALSE) {    
+			  CRUDBooster::redirect(CRUDBooster::adminPath(),trans("crudbooster.denied_access"));
+			}
+			
+			$data = [];
+			$data['News Post'] = 'Add Data';
+			
+			//Please use cbView method instead view method from laravel
+			$this->cbView('custom_add_view',$data);
+		  }
 
 
 	    //By the way, you can still create your own method in here... :) 

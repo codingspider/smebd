@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailable;
 use DataTables;
 use App\User;
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
+use Exception;
+use App;
+use PDF;
+
 class LoanController extends Controller
 {
 
@@ -17,7 +24,25 @@ class LoanController extends Controller
     }
     public function create (Request $request){
 
+
+        $images = $request->file('images');
+            if ($request->hasFile('images')) :
+                    foreach ($images as $item):
+                        $var = date_create();
+                        $time = date_format($var, 'YmdHis');
+                        $imageName = $time . '-' . $item->getClientOriginalName();
+                        $destinationPath = public_path('/uploads');
+                        $item->move($destinationPath, $imageName);
+                        $arr[] = $imageName;
+                    endforeach;
+                    $image = implode(",", $arr);
+            else:
+                    $image = '';
+            endif;
+
         $validator = $this->validate($request, [
+             'name' => 'required | string ',
+             'address' => 'required | string ',
              'loan_type' => 'required | string ',
              'business_name' => 'required | string ',
              'business_address' => 'required | string ',
@@ -32,10 +57,13 @@ class LoanController extends Controller
              'district' => 'required | string ',
              'loan_amount' => 'required | string ',
              'period_of_loan' => 'required | string ',
+            
            
          ]);
 
         $data = array();
+        $data['name'] = $request->name;
+        $data['address'] = $request->address;
         $data['loan_type'] = $request->loan_type;
         $data['business_name'] = $request->business_name;
         $data['business_address'] = $request->business_address;
@@ -53,11 +81,29 @@ class LoanController extends Controller
         $data['period_of_loan'] = $request->period_of_loan; 
         $data['client_id'] = $request->client_id; 
         $data['status'] = 'pending'; 
+        $data['images'] = $image; 
         $customer_id = DB::table('loan_applications')->insert($data);
 
-        Mail::to('rashed@optima-solution.com')->send(new SendMailable($request));
+        $data['client_email'] = $request->client_email; 
 
-        
+        //Feedback mail to client
+        $pdf = PDF::loadView('myPDF', $data)->setPaper('a4'); 
+        Mail::send('success_mail_send', $data, function($message) use ($data,$pdf){
+                $message->from($data['client_email']);
+                $message->to('rashed@optima-solution.com');
+                $message->subject('Application');
+                //Attach PDF doc
+                $message->attachData($pdf->output(),'application.pdf');
+            });
+        //Feedback mail to client
+        $pdf = PDF::loadView('myPDF', $data)->setPaper('a4'); 
+        Mail::send('success_mail', $data, function($message) use ($data,$pdf){
+                $message->from('rashed@optima-solution.com');
+                $message->to($data['client_email']);
+                $message->subject('Thank you message');
+                //Attach PDF doc
+                $message->attachData($pdf->output(),'customer.pdf');
+            });
 
         return back()->with('message', 'Your aplication has been sent! ');
     }

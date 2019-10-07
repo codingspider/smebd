@@ -3,9 +3,9 @@
 @section('content')
 @php
     use Illuminate\Support\Str;
+
 @endphp
-		<!-- heading-news-section2
-			================================================== -->
+
             <section class="heading-news2">
 
                 <div class="container">
@@ -27,11 +27,13 @@
                                     @foreach ($smes_and_bankers_news as $item)
                                 <li>
                                     <div class="news-post image-post">
-                                    <img src="{{ $item->image_name }}" alt="">
+                                   
+                                    <img src="{{ asset('uploads/'.$item->image_name) }}" alt="">
+                                       
                                         <div class="hover-box">
                                             <div class="inner-hover">
                                                 <a class="category-post sport" href="sport.html">SMEs and Bankers </a>
-                                                <h2><a href="{{ URL::to('sme/bankers/news/details/'.$item->id )}}">{{ $item->headline}} </a></h2>
+                                                <h2 style="color:aquamarine"><a href="{{ URL::to('sme/bankers/news/details/'.$item->id )}}">{{ $item->headline}} </a></h2>
                                                 <ul class="post-tags">
                                                 <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($item->created_at))}}</li>
                                                 <li><i class="fa fa-user"></i>by <a href="#">{{$item->news_provider}}</a></li>

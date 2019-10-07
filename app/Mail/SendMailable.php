@@ -18,9 +18,9 @@ class SendMailable extends Mailable
      *
      * @return void
      */
-    public function __construct(Request $request)
+    public function __construct($download)
     {
-        $this->request = $request;
+        $this->download = $download;
     }
     /**
      * Build the message.
@@ -32,12 +32,6 @@ class SendMailable extends Mailable
         return $this->to('rashed@optima-solution.com')
                     //->bcc('auth@another.com')
                     ->subject('Mail From SMEBD')
-                    ->view('success_mail_send')->with([
-                        'request' => $this->$request->business_name,
-                        'request' => $this->$request->loan_type,
-                        'request' => $this->$request->business_address,
-                        'request' => $this->$request->type_of_business,
-                        'request' => $this->$request->monthly_sales,
-                    ]);
+                    ->view('success_mail_send')->with($data);
     }
 }

@@ -14,9 +14,9 @@
         	        <div style="margin: 30px;">
              	        <p>
                  	        Hello There! <br> <br>
-                 	        You have a mail from SMEBD.net on Loan Process.  <br> <br>
-                    Here is the link to access your area:<a href='{{ URL::to('/admin')}}'>LINK</a><br><br>
-                            Please have a look on your admin dashboard for details. <br><br>
+                 	        Your Application for a Loan has been submitted. <br> <br>
+                    
+                            Please wait for our response. <br><br>
                             Once again, thank you!!!<br><br>
                         
              	        <div style="text-align: Right;">

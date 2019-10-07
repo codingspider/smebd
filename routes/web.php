@@ -9,8 +9,8 @@ Route::get('sme/technology/news/details/{id}', 'DetailsController@technology_new
 Route::get('sme/blog/news/details/{id}', 'DetailsController@blog_news');
 
 Route::get('sme/blog', 'BlogController@index');
-Route::get('sme/news/post', 'NewsController@news');
-Route::get('news/submit', 'NewsController@news');
+Route::get('sme/news/post', 'NewsController@news')->middleware('auth');
+Route::post('news/submit', 'NewsController@news_submit');
 
 Route::post ('/user/register', 'LoginController@register');
 
