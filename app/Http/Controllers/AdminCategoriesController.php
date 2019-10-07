@@ -5,12 +5,12 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminSmesAndBankersNewsController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminCategoriesController extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
-			$this->title_field = "image_name";
+			$this->title_field = "name";
 			$this->limit = "20";
 			$this->orderby = "id,desc";
 			$this->global_privilege = false;
@@ -25,35 +25,22 @@
 			$this->button_filter = true;
 			$this->button_import = false;
 			$this->button_export = false;
-			$this->table = "sme_blogs";
+			$this->table = "categories";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Headline","name"=>"headline"];
-			$this->col[] = ["label"=>"News Source","name"=>"news_source"];
-			$this->col[] = ["label"=>"Image Name","name"=>"image_name"];
-			$this->col[] = ["label"=>"News Provider","name"=>"news_provider"];
+			$this->col[] = ["label"=>"Name","name"=>"name"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Headline','name'=>'headline','type'=>'text','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Short Description','name'=>'short_description','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Detail','name'=>'detail','type'=>'wysiwyg','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'News Source','name'=>'news_source','type'=>'text','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Image Name','name'=>'image_name','type'=>'upload','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'News Provider','name'=>'news_provider','type'=>'text','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Category','name'=>'name','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Headline','name'=>'headline','type'=>'text','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Short Description','name'=>'short_description','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Detail','name'=>'detail','type'=>'wysiwyg','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'News Source','name'=>'news_source','type'=>'text','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Image Name','name'=>'image_name','type'=>'upload','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'News Provider','name'=>'news_provider','type'=>'text','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
+			//$this->form[] = ["label"=>"Name","name"=>"name","type"=>"text","required"=>TRUE,"validation"=>"required|string|min:3|max:70","placeholder"=>"You can only enter the letter only"];
 			# OLD END FORM
 
 			/* 
@@ -327,18 +314,6 @@
 
 	    }
 
-		public function getAdd() {
-			//Create an Auth
-			if(!CRUDBooster::isCreate() && $this->global_privilege==FALSE || $this->button_add==FALSE) {    
-			  CRUDBooster::redirect(CRUDBooster::adminPath(),trans("crudbooster.denied_access"));
-			}
-			
-			$data = [];
-			$data['News Post'] = 'Add Data';
-			
-			//Please use cbView method instead view method from laravel
-			$this->cbView('custom_add_view',$data);
-		  }
 
 
 	    //By the way, you can still create your own method in here... :) 

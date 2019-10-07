@@ -9,7 +9,7 @@ class DetailsController extends Controller
 {
     public function bankers_news($id){
 
-        $bank_news = DB::table('smes_and_bankers_news')->where('id', $id)->first();
+        $bank_news = DB::table('sme_blogs')->where('id', $id)->first();
   
        
 
@@ -19,7 +19,7 @@ class DetailsController extends Controller
 
     public function fashon_news($id){
 
-        $fashion_news_admins = DB::table('fashion_news_admins')->where('id', $id)->first();
+        $fashion_news_admins = DB::table('sme_blogs')->where('id', $id)->first();
 
      
   
@@ -30,7 +30,7 @@ class DetailsController extends Controller
     }
     public function miscelleneous_news($id){
 
-        $miscelleneous_news = DB::table('miscelleneous_news')->where('id', $id)->first();
+        $miscelleneous_news = DB::table('sme_blogs')->where('id', $id)->first();
 
 
 
@@ -40,7 +40,7 @@ class DetailsController extends Controller
     }
     public function technology_news($id){
 
-        $technology_news = DB::table('technology_news')->where('id', $id)->first();
+        $technology_news = DB::table('sme_blogs')->where('id', $id)->first();
 
 
   

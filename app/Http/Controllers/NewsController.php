@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-
+use DataTables;
 class NewsController extends Controller
 
 { 
@@ -41,10 +41,73 @@ class NewsController extends Controller
         $data['news_source'] = $request->news_source;
         $data['detail'] = $request->detail;
         $data['image_name'] = $name;
+        $data['cat_id'] = $request->category_id;
 
-        DB::table('smes_and_bankers_news')->insert($data);
+        DB::table('sme_blogs')->insert($data);
   
         return back()->with('success','News has been posted sucessfully. Please wait for admin approval.');
 }
+
+        public function news_approve(Request $request)
+            {
+                if ($request->ajax()) {
+                    $data = DB::table('sme_blogs')
+                    
+                    ->get();
+
+                    return Datatables::of($data)
+                            ->addIndexColumn()
+                            ->addColumn('action', function($row){
+                                return '<a href="news/approve/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Approve</a> <a href="news/arcive/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-remove"></i>Archive</a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                            })
+                            ->rawColumns(['action'])
+                            ->make(true);
+                }
+            
+                return view('news_approve');
+            }
+
+            public function news_approve_done($id){
+                $data = DB::table('sme_blogs')
+                
+                ->where('id', $id)->update([
+                    'status' => 'Approved',
+                    'approved' => 1,
+                ]);
+                return back()->with('success', 'News Published Succesfully! ');
+              
+            }
+            public function news_archive_done ($id){
+                $data = DB::table('sme_blogs')
+                ->where('id', $id)->update([
+                    'status' => 'Archived',
+                    'approved' => 2,
+                ]);
+                return back()->with('success', 'News Archived Succesfully! ');
+              
+            }
+            public function news_delete ($id){
+                $data = DB::table('sme_blogs')
+                ->where('id', $id)->delete();
+
+                return back()->with('success', 'News Deleted Succesfully! ');
+              
+            }
+            public function news_archive (){
+
+        $smes_and_bankers_news = DB::table('sme_blogs')->where('approved', 2)->where('cat_id', 3)->orderBy('id', 'DESC')->get();
+        $fashion_news_admins = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 2)->paginate(3);
+        $miscelleneous_news = DB::table('sme_blogs')->orderBy('id', 'DESC')->get();
+        $technology_news = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 1)->simplePaginate(1);
+        $tech = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 1)->simplePaginate(4);
+        $technology = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 1)->first();
+        $blog_requests = DB::table('sme_blogs')->orderBy('id', 'DESC')->get()->where('approved', 2)->where('cat_id', 4);
+        $blogs = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 4)->paginate(3);
+        $settings = DB::table('settings')->first();
+        $services = DB::table('services')->get();
+
+        return view('news_archive', compact('tech','blogs','smes_and_bankers_news', 'fashion_news_admins', 'miscelleneous_news', 'technology_news', 'blog_requests', 'settings', 'services', 'technology'));
+              
+            }
 
 }

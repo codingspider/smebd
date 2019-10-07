@@ -14,6 +14,7 @@ use Dompdf\Options;
 use Exception;
 use App;
 use PDF;
+use Alert;
 
 class LoanController extends Controller
 {
@@ -30,7 +31,7 @@ class LoanController extends Controller
                     foreach ($images as $item):
                         $var = date_create();
                         $time = date_format($var, 'YmdHis');
-                        $imageName = $time . '-' . $item->getClientOriginalName();
+                        $imageName = rand(11111111, 99999999).'.'. $item->getClientOriginalExtension();
                         $destinationPath = public_path('/uploads');
                         $item->move($destinationPath, $imageName);
                         $arr[] = $imageName;
@@ -104,7 +105,7 @@ class LoanController extends Controller
                 //Attach PDF doc
                 $message->attachData($pdf->output(),'customer.pdf');
             });
-
+            
         return back()->with('message', 'Your aplication has been sent! ');
     }
    
@@ -119,9 +120,6 @@ class LoanController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-   
-                          
-     
                         return '<a href="view/'.$row->id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i> View</a> <a href="approve/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Approve</a> <a href="cancel/'.$row->id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-remove"></i>Cancel</a> <a href="delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
                     })
                     ->rawColumns(['action'])
@@ -154,7 +152,10 @@ class LoanController extends Controller
             'status_value' => 1,
         ]);
 
-        return back()->with('success', 'Loan has been approved successfully.');
+        alert()->success('Success Message', 'Optional Title');
+
+        return back();
+      
     }
     public function loan_request_cancel ($id){
         $data = DB::table('loan_applications')

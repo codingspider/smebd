@@ -29,7 +29,7 @@
                             <div class="col-md-6">
                                 <div style="height:600px" class="news-post standard-post2">
                                     <div class="post-gallery">
-                                    <img src="{{ asset($item->image_name)}}" alt="">
+                                    <img src="{{ asset('uploads/'.$item->image_name)}}" alt="">
                                         <a class="category-post world" href="world.html">Trends</a>
                                     </div>
                                     <div class="post-title">

@@ -22,7 +22,7 @@
                         @csrf
             <div class="col-md-8">
                     <div  class="form-group row">
-                            <label style="color:white"  for="loan_type" class="col-md-2 col-form-label text-md-right">{{ __('Head Line') }}</label>
+                            <label style="color:white"  for="loan_type" class="col-md-3 col-form-label text-md-right">{{ __('Head Line') }}</label>
 
                             <div class="col-md-8">
                                 <input id="headline" type="text" class="form-control{{ $errors->has('headline') ? ' is-invalid' : '' }}" name="headline" value="{{ old('headline') }}" autofocus>
@@ -35,10 +35,30 @@
                             </div>
                         </div>
             </div> <!-- form-group// -->
+            @php
+                $data = DB::table('categories')->get();
+            @endphp
+            <div class="col-md-8">
+                    <div  class="form-group row">
+                            <label style="color:white"  for="loan_type" class="col-md-3 col-form-label text-md-right">{{ __('Category Name') }}</label>
+
+                            <div class="col-md-8">
+                                <select name="category_id" class="form-control" id="sel1">
+                                        <option value="select">Select One Category First </option>
+                                    @foreach ($data as $item)
+                                   
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                    
+                                   
+                                  </select>
+                            </div>
+                        </div>
+            </div> <!-- form-group// -->
 
             <div class="col-md-8">
                     <div class="form-group row">
-                            <label style="color:white" for="short_description" class="col-md-2 col-form-label text-md-right">{{ __('Short Description') }}</label>
+                            <label style="color:white" for="short_description" class="col-md-3 col-form-label text-md-right">{{ __('Short Description') }}</label>
 
                             <div class="col-md-8">
                                 <textarea name="short_description" id="short_description" cols="60" rows="10"></textarea>
@@ -53,7 +73,7 @@
             </div> <!-- form-group// -->
             <div class="col-md-12">
                     <div class="form-group row">
-                            <label style="color:white" for="detail" class="col-md-2 col-form-label text-md-right">{{ __('Detail') }}</label>
+                            <label style="color:white" for="detail" class="col-md-3 col-form-label text-md-right">{{ __('Detail') }}</label>
 
                             <div class="col-md-12">
                                 <textarea id="summernote" class="form-control summernote" name="detail"></textarea>
@@ -75,7 +95,7 @@
             </div> <!-- form-group// -->
             <div class="col-md-6">
                     <div class="form-group row">
-                            <label style="color:white" for="news_source" class="col-md-2 col-form-label text-md-right">{{ __('NEWS Source') }}</label>
+                            <label style="color:white" for="news_source" class="col-md-3 col-form-label text-md-right">{{ __('NEWS Source') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="text" class="form-control{{ $errors->has('news_source') ? ' is-invalid' : '' }}" name="news_source" value="{{ old('news_source') }}">
@@ -92,7 +112,7 @@
             
             <div class="col-md-6">
                     <div class="form-group row">
-                            <label style="color:white" for="news_provider" class="col-md-2 col-form-label text-md-right">{{ __('News Provider') }}</label>
+                            <label style="color:white" for="news_provider" class="col-md-3 col-form-label text-md-right">{{ __('News Provider') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="text" class="form-control{{ $errors->has('news_provider') ? ' is-invalid' : '' }}" name="news_provider" value="{{ old('news_provider') }}">
@@ -108,7 +128,7 @@
             
             <div class="col-md-6">
                 <div class="form-group row">
-                        <label style="color:white" for="image_name" class="col-md-2 col-form-label text-md-right">{{ __('Image') }}</label>
+                        <label style="color:white" for="image_name" class="col-md-3 col-form-label text-md-right">{{ __('Image') }}</label>
 
                         <div class="col-md-6">
                             <input type="file" class="form-control{{ $errors->has('image_name') ? ' is-invalid' : '' }}" name="image_name">

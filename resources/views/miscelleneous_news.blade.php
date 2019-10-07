@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="post-gallery">
-                            <img src="{{ asset($miscelleneous_news->image_name)}}" alt="">
+                            <img src="{{ asset('uploads/'.$miscelleneous_news->image_name)}}" alt="">
                             <span class="image-caption"> Description </span>
                         </div>
 
@@ -85,7 +85,7 @@
                                                     
                                             
                                                 <li>
-                                                    <img src="{{ $item->image}}" alt="">
+                                                    <img src="{{ asset('uploads/'.$item->image)}}" alt="">
                                                     <div class="post-content">
                                                     <h2><a href="{{ $item->link }}">{{ $item->service}}</a></h2>
                                                        

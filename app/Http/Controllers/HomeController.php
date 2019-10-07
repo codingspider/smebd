@@ -24,14 +24,14 @@ class HomeController extends Controller
      */
 
     public function index(){
-        $smes_and_bankers_news = DB::table('smes_and_bankers_news')->where('status', 1)->orderBy('id', 'DESC')->get();
-        $fashion_news_admins = DB::table('fashion_news_admins')->orderBy('id', 'DESC')->paginate(3);
-        $miscelleneous_news = DB::table('miscelleneous_news')->orderBy('id', 'DESC')->get();
-        $technology_news = DB::table('technology_news')->orderBy('id', 'DESC')->simplePaginate(1);
-        $tech = DB::table('technology_news')->orderBy('id', 'DESC')->simplePaginate(4);
-        $technology = DB::table('technology_news')->orderBy('id', 'DESC')->first();
-        $blog_requests = DB::table('sme_blogs')->orderBy('id', 'DESC')->get();
-        $blogs = DB::table('sme_blogs')->orderBy('id', 'DESC')->paginate(3);
+        $smes_and_bankers_news = DB::table('sme_blogs')->where('approved', 1)->where('cat_id', 3)->orderBy('id', 'DESC')->get();
+        $fashion_news_admins = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 2)->paginate(3);
+        $miscelleneous_news = DB::table('sme_blogs')->orderBy('id', 'DESC')->get();
+        $technology_news = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 1)->simplePaginate(1);
+        $tech = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 1)->simplePaginate(4);
+        $technology = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 1)->first();
+        $blog_requests = DB::table('sme_blogs')->orderBy('id', 'DESC')->get()->where('approved', 1)->where('cat_id', 4);
+        $blogs = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 4)->paginate(3);
         $settings = DB::table('settings')->first();
         $services = DB::table('services')->get();
 

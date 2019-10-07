@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="post-gallery">
-                            <img src="{{ asset($blog_news->image_name)}}" alt="">
+                            <img src="{{ asset('uploads/'.$blog_news->image_name)}}" alt="">
                             <span class="image-caption"> Description </span>
                         </div>
 

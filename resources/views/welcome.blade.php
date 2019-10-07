@@ -20,6 +20,8 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/ticker-style.css') }}"/>
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" media="screen">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel=”stylesheet” href=” https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+	<script src=”https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 	
 	<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d8b17b4cb45ad0012b51dcd&product=inline-share-buttons' async='async'></script>
 <!-- include summernote css/js -->
@@ -122,12 +124,28 @@
 						
 								<li><a class="travel" href="{{ URL::to('sme/archive')}}">Archive </a></li>
 
-							<li><a class="tech" href="{{ URL::to('sme/blog')}}">SME Blog</a>
-									
-								</li>
-
 							
-								<li><a class="tech" href="news-category.html">Help Desk </a>
+								<li><a class="tech" href="#">SME Blog </a>
+									<div class="megadropdown">
+										<div class="container">
+											<div class="inner-megadropdown tech-dropdown">
+
+												<div class="owl-wrapper">
+													<ol class="">
+													<button type="button" class="btn btn-info" onclick="window.location = '{{ URL::to('sme/news/post')}}'" >Post News </button>
+														
+														<button type="button" class="btn btn-info" onclick="window.location = ''">All News </button>
+															
+															
+												   </ol>
+												
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</li>
+								<li><a class="tech" href="#">Help Desk </a>
 									<div class="megadropdown">
 										<div class="container">
 											<div class="inner-megadropdown tech-dropdown">
@@ -135,117 +153,117 @@
 												<div class="owl-wrapper">
 													<ol class="">
 														<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">DEFINITION OF SME</button>
-  <div id="demo" class="collapse">
-	<div class="container-fluid">
-		<div class="row">
-		<div class="col-sm-12 col-lg-12">
-		</div>
-		<div class="col-sm-12 col-lg-12">
-		<table class="table table-bordered" style="font-size: 14px;">
-		<tbody>
-		<tr style="background-color: #f9f9f9;">
-		<td width="40">
-		<p style="text-align: center;"><strong>SI</strong></p>
-		</td>
-		<td colspan="2" width="240">
-		<p style="text-align: center;"><strong>Type of Industry</strong></p>
-		</td>
-		<td style="text-align: center;" width="359"><strong>The amount of investment</strong>
-		
-		<strong>(Replacement cost and value of fixed assets, excluding land and factory buildings)</strong></td>
-		<td width="270">
-		<p style="text-align: center;"><strong>Number of employed workers</strong></p>
-		</td>
-		</tr>
-		<tr style="background-color: #f9f9f9;">
-		<td width="40">
-		<p style="text-align: center;">1.</p>
-		</td>
-		<td colspan="2" width="211"><strong>Cottage Industry</strong></td>
-		<td width="359">Below 10 lakh</td>
-		<td width="270">number of workers not exceed 15</td>
-		</tr>
-		<tr style="background-color: #f9f9f9;">
-		<td style="text-align: center;" width="40">2.</td>
-		<td colspan="2" width="211"><strong>Micro Industry</strong></td>
-		<td width="359">10 lakh to 75 lakh</td>
-		<td width="270">16 to 30</td>
-		</tr>
-		<tr style="background-color: #f9f9f9;">
-		<td style="text-align: center;" rowspan="2" width="40">3.</td>
-		<td rowspan="2" width="108"><strong>Small Industry</strong></td>
-		<td width="103">Manufacturing</td>
-		<td width="359">75 lakh to 15 crore</td>
-		<td width="270">31 to 120</td>
-		</tr>
-		<tr style="background-color: #f9f9f9;">
-		<td width="103">Service</td>
-		<td width="359">10 lakh to 2 crore</td>
-		<td width="270">16 to 50</td>
-		</tr>
-		<tr style="background-color: #f9f9f9;">
-		<td style="text-align: center;" rowspan="2" width="40">4.</td>
-		<td rowspan="2" width="108"><strong>Medium Industry</strong></td>
-		<td width="103">Manufacturing</td>
-		<td width="359">15 crore to 50 crore</td>
-		<td width="270">121 to 300</td>
-		</tr>
-		<tr style="background-color: #f9f9f9;">
-		<td width="103">Service</td>
-		<td width="359">2 crore to 30 crore</td>
-		<td width="270">51 to 120</td>
-		</tr>
-		<tr style="background-color: #f9f9f9;">
-		<td style="text-align: center;" rowspan="2" width="40">5.</td>
-		<td rowspan="2" width="108"><strong>Large Industry</strong></td>
-		<td width="103">Manufacturing</td>
-		<td width="359">More than 50 crore</td>
-		<td width="270">More than 300</td>
-		</tr>
-		<tr style="background-color: #f9f9f9;">
-		<td width="103">Service</td>
-		<td width="359">More than 30 crore</td>
-		<td width="270">More than 120</td>
-		</tr>
-		</tbody>
-		</table>
-		<strong>Source: National Industrial policy(2016)</strong>
-		
-		</div>
-		</div>
-		</div>
-		<!-- End of main container -->
+															<div id="demo" class="collapse">
+																<div class="container-fluid">
+																	<div class="row">
+																	<div class="col-sm-12 col-lg-12">
+																	</div>
+																	<div class="col-sm-12 col-lg-12">
+																	<table class="table table-bordered" style="font-size: 14px;">
+																	<tbody>
+																	<tr style="background-color: #f9f9f9;">
+																	<td width="40">
+																	<p style="text-align: center;"><strong>SI</strong></p>
+																	</td>
+																	<td colspan="2" width="240">
+																	<p style="text-align: center;"><strong>Type of Industry</strong></p>
+																	</td>
+																	<td style="text-align: center;" width="359"><strong>The amount of investment</strong>
+																	
+																	<strong>(Replacement cost and value of fixed assets, excluding land and factory buildings)</strong></td>
+																	<td width="270">
+																	<p style="text-align: center;"><strong>Number of employed workers</strong></p>
+																	</td>
+																	</tr>
+																	<tr style="background-color: #f9f9f9;">
+																	<td width="40">
+																	<p style="text-align: center;">1.</p>
+																	</td>
+																	<td colspan="2" width="211"><strong>Cottage Industry</strong></td>
+																	<td width="359">Below 10 lakh</td>
+																	<td width="270">number of workers not exceed 15</td>
+																	</tr>
+																	<tr style="background-color: #f9f9f9;">
+																	<td style="text-align: center;" width="40">2.</td>
+																	<td colspan="2" width="211"><strong>Micro Industry</strong></td>
+																	<td width="359">10 lakh to 75 lakh</td>
+																	<td width="270">16 to 30</td>
+																	</tr>
+																	<tr style="background-color: #f9f9f9;">
+																	<td style="text-align: center;" rowspan="2" width="40">3.</td>
+																	<td rowspan="2" width="108"><strong>Small Industry</strong></td>
+																	<td width="103">Manufacturing</td>
+																	<td width="359">75 lakh to 15 crore</td>
+																	<td width="270">31 to 120</td>
+																	</tr>
+																	<tr style="background-color: #f9f9f9;">
+																	<td width="103">Service</td>
+																	<td width="359">10 lakh to 2 crore</td>
+																	<td width="270">16 to 50</td>
+																	</tr>
+																	<tr style="background-color: #f9f9f9;">
+																	<td style="text-align: center;" rowspan="2" width="40">4.</td>
+																	<td rowspan="2" width="108"><strong>Medium Industry</strong></td>
+																	<td width="103">Manufacturing</td>
+																	<td width="359">15 crore to 50 crore</td>
+																	<td width="270">121 to 300</td>
+																	</tr>
+																	<tr style="background-color: #f9f9f9;">
+																	<td width="103">Service</td>
+																	<td width="359">2 crore to 30 crore</td>
+																	<td width="270">51 to 120</td>
+																	</tr>
+																	<tr style="background-color: #f9f9f9;">
+																	<td style="text-align: center;" rowspan="2" width="40">5.</td>
+																	<td rowspan="2" width="108"><strong>Large Industry</strong></td>
+																	<td width="103">Manufacturing</td>
+																	<td width="359">More than 50 crore</td>
+																	<td width="270">More than 300</td>
+																	</tr>
+																	<tr style="background-color: #f9f9f9;">
+																	<td width="103">Service</td>
+																	<td width="359">More than 30 crore</td>
+																	<td width="270">More than 120</td>
+																	</tr>
+																	</tbody>
+																	</table>
+																	<strong>Source: National Industrial policy(2016)</strong>
+																	
+																	</div>
+																	</div>
+																	</div>
+																	<!-- End of main container -->
 
-  </div>
-  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2">SME REFINANCE SHCMES</button>
-  <div id="demo2" class="collapse">
-    <p style="background-color: #f9f9f9;">Bangladesh Bank has disbursed loans amounting to Tk 5,831.39 crore as of April 30, 2017 from its seven refinance schemes for the country’s disadvantaged entrepreneurs, which has played an important role in raising the capacity of small and medium enterprises.
+															</div>
+															<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2">SME REFINANCE SHCMES</button>
+															<div id="demo2" class="collapse">
+																<p style="background-color: #f9f9f9;">Bangladesh Bank has disbursed loans amounting to Tk 5,831.39 crore as of April 30, 2017 from its seven refinance schemes for the country’s disadvantaged entrepreneurs, which has played an important role in raising the capacity of small and medium enterprises.
 
-		The majority of clients have taken the credit from the schemes with a lower interest rate of<strong> 8 to 9 percent </strong>that has help the entrepreneurs to open new businesses or to expand the existing ones.
-		Under the refinance schemes, banks disburse loans to their clients from their own sources after which they get the amounts from the BB.
-		
-		<strong>The central bank provides the fund to banks with an interest rate of five per cent and they (banks) in most of the cases add three to four per cent on the rate while disbursing the loans to their clients.</strong>
-		
-		The BB is now operating seven refinance schemes under its SME and special programmes department.
-		The Asian Development Bank and the Japan International Cooperation Agency have given financial support to two of the seven schemes.
-		
-		The central bank introduced the refinance schemes with the aim of bringing the underprivileged entrepreneurs under the banking system.
-		
-		The BB’s <strong>refinance schemes</strong> under the <strong>SME and special programmes department (SMESPD)</strong> are:</p>
-<ol>
- 	<li style="color: blue; cursor: pointer;"><a href="http://localhost:8085/wordpress/agrorefinance/">Refinance scheme for setting up agro-based product processing industries in rural areas</a></li>
- 	<li style="color: blue; cursor: pointer;"><a href=" http://localhost:8085/wordpress/greenrefinance/">Small enterprise scheme</a></li>
- 	<li style="background-color: #f9f9f9;">Refinance scheme for Shariah-based financing in agro-based industry,</li>
- 	<li style="background-color: #f9f9f9;">Refinance scheme for new entrepreneurs in cottage, micro and small enterprise sector,</li>
- 	<li style="background-color: #f9f9f9;">Medium-sized enterprise development project and</li>
- 	<li style="background-color: #f9f9f9;">Financial sector project for development of SME and</li>
- 	<li style="background-color: #f9f9f9;">Urban building safety project.</li>
- 	<li style="background-color: #f9f9f9;">Refinance Scheme for Green Products/Initiatives</li>
-        <li  style="color: blue; cursor: pointer;"><a href="http://localhost:8085/wordpress/tsl_jica_fdr/ ">JICA 2 STEP LOAN FOR FDI PROMOTION IN BANGLADESH</a></li>
-</ol>
+																	The majority of clients have taken the credit from the schemes with a lower interest rate of<strong> 8 to 9 percent </strong>that has help the entrepreneurs to open new businesses or to expand the existing ones.
+																	Under the refinance schemes, banks disburse loans to their clients from their own sources after which they get the amounts from the BB.
+																	
+																	<strong>The central bank provides the fund to banks with an interest rate of five per cent and they (banks) in most of the cases add three to four per cent on the rate while disbursing the loans to their clients.</strong>
+																	
+																	The BB is now operating seven refinance schemes under its SME and special programmes department.
+																	The Asian Development Bank and the Japan International Cooperation Agency have given financial support to two of the seven schemes.
+																	
+																	The central bank introduced the refinance schemes with the aim of bringing the underprivileged entrepreneurs under the banking system.
+																	
+																	The BB’s <strong>refinance schemes</strong> under the <strong>SME and special programmes department (SMESPD)</strong> are:</p>
+															<ol>
+																<li style="color: blue; cursor: pointer;"><a href="http://localhost:8085/wordpress/agrorefinance/">Refinance scheme for setting up agro-based product processing industries in rural areas</a></li>
+																<li style="color: blue; cursor: pointer;"><a href=" http://localhost:8085/wordpress/greenrefinance/">Small enterprise scheme</a></li>
+																<li style="background-color: #f9f9f9;">Refinance scheme for Shariah-based financing in agro-based industry,</li>
+																<li style="background-color: #f9f9f9;">Refinance scheme for new entrepreneurs in cottage, micro and small enterprise sector,</li>
+																<li style="background-color: #f9f9f9;">Medium-sized enterprise development project and</li>
+																<li style="background-color: #f9f9f9;">Financial sector project for development of SME and</li>
+																<li style="background-color: #f9f9f9;">Urban building safety project.</li>
+																<li style="background-color: #f9f9f9;">Refinance Scheme for Green Products/Initiatives</li>
+																	<li  style="color: blue; cursor: pointer;"><a href="http://localhost:8085/wordpress/tsl_jica_fdr/ ">JICA 2 STEP LOAN FOR FDI PROMOTION IN BANGLADESH</a></li>
+															</ol>
 
-  </div>
-  <button type="button" class="btn btn-info" >REQUIRED DOCUMENTS FOR APPLYING A LOAN</button>
+															</div>
+															<button type="button" class="btn btn-info" >REQUIRED DOCUMENTS FOR APPLYING A LOAN</button>
 												   </ol>
 												
 												</div>

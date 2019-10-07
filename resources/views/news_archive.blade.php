@@ -1,5 +1,5 @@
 @extends('welcome')
-@section('title', 'Home')
+@section('title', 'News Archive')
 @section('content')
 @php
     use Illuminate\Support\Str;
@@ -9,16 +9,7 @@
             <section class="heading-news2">
 
                 <div class="container">
-                    
-                    <div class="ticker-news-box">
-                        <span class="breaking-news">breaking news</span>
-                        <ul id="js-news">
-                        @foreach ($smes_and_bankers_news as $item)
-                            
-                            <li class="news-item"><span class="time-news">{{ date('d-m-Y', strtotime($item->created_at))}}</span>  <a href="{{ URL::to('sme/bankers/news/details/'.$item->id )}}">{{ $item->headline}} </a> - {{ Str::words($item->detail, '10', '...')}}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+          
     
                     <div class="iso-call heading-news-box">
                         <div class="image-slider snd-size">

@@ -4,7 +4,7 @@
 
 @section('content')
 
-================================================== -->
+
 <section class="block-wrapper">
     <div class="container">
         <div class="row">
@@ -85,7 +85,7 @@
                                                     
                                             
                                                 <li>
-                                                    <img src="{{ $item->image}}" alt="">
+                                                    <img src="{{ asset('uploads/'.$item->image)}}" alt="">
                                                     <div class="post-content">
                                                     <h2><a href="{{ $item->link }}">{{ $item->service}}</a></h2>
                                                        

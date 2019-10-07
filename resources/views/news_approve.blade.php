@@ -64,13 +64,13 @@
     var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ url('list/loan/request') }}",
+        ajax: "{{ url('news/details/view') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'business_name', name: 'business_name'},
-            {data: 'business_address', name: 'business_address'},
-            {data: 'loan_type', name: 'loan_type'},
-            {data: 'loan_amount', name: 'loan_amount'},
+            {data: 'headline', name: 'headline'},
+            {data: 'news_source', name: 'news_source'},
+            {data: 'news_provider', name: 'news_provider'},
+            {data: 'created_at', name: 'created_at'},
             {data: 'status', name: 'status'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]

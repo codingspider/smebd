@@ -11,6 +11,11 @@ Route::get('sme/blog/news/details/{id}', 'DetailsController@blog_news');
 Route::get('sme/blog', 'BlogController@index');
 Route::get('sme/news/post', 'NewsController@news')->middleware('auth');
 Route::post('news/submit', 'NewsController@news_submit');
+Route::get('news/details/view', 'NewsController@news_approve');
+Route::get('news/details/news/approve/{id}', 'NewsController@news_approve_done');
+Route::get('news/details/news/arcive/{id}', 'NewsController@news_archive_done');
+Route::get('news/details/news/delete/{id}', 'NewsController@news_delete');
+Route::get('sme/archive', 'NewsController@news_archive');
 
 Route::post ('/user/register', 'LoginController@register');
 
