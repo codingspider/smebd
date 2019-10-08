@@ -16,6 +16,9 @@ Route::get('news/details/news/approve/{id}', 'NewsController@news_approve_done')
 Route::get('news/details/news/arcive/{id}', 'NewsController@news_archive_done');
 Route::get('news/details/news/delete/{id}', 'NewsController@news_delete');
 Route::get('sme/archive', 'NewsController@news_archive');
+Route::get('contact', 'NewsController@contact_create');
+
+Route::post('/newsletter/post', 'NewsController@store');
 
 Route::post ('/user/register', 'LoginController@register');
 

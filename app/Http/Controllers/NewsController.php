@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use DataTables;
+use App\TestModel;
 class NewsController extends Controller
 
 { 
@@ -110,4 +111,28 @@ class NewsController extends Controller
               
             }
 
+            public function store (Request $request)
+            {
+
+
+                $request->validate([
+                    'subscribe' => 'required',
+                   
+                ]);
+                
+                $data = array();
+                $data['sumbscribe'] = $request->subscribe;
+
+                $customer_id = DB::table('test_models')->insert($data);
+        
+        return back()->with('success','Thanks for subscribing to our newsletter.');
+
+                }
+            public function contact_create (Request $request)
+            {
+
+
+        return view('contact');
+
+                }
 }

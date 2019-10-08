@@ -9,8 +9,6 @@
             <section class="heading-news2">
 
                 <div class="container">
-          
-    
                     <div class="iso-call heading-news-box">
                         <div class="image-slider snd-size">
                             <span class="top-stories">TOP STORIES</span>

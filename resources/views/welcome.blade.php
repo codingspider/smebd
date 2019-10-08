@@ -7,7 +7,7 @@
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+	<meta name="_token" content="{{csrf_token()}}" />
 	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic' rel='stylesheet' type='text/css'>
 	<link href="../../../maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 	
@@ -36,8 +36,6 @@
 	<!-- Container -->
 	<div id="container">
 
-		<!-- Header
-		    ================================================== -->
 		<header class="clearfix second-style">
 			<!-- Bootstrap navbar -->
 			<nav class="navbar navbar-default navbar-static-top" role="navigation">
@@ -95,7 +93,7 @@
 
 				<!-- Logo & advertisement -->
 				<div class="logo-advertisement">
-					<div class="container" style="background-image: url(http://ftp.jaist.ac.jp/pub/Linux/CentOS-vault/HEADER.images/docs-header.bak.png);">
+					<div class="container" style="background-image: url({{ asset($settings->image)}});">
 
 						<!-- Brand and toggle get grouped for better mobile display -->
 						<div class="navbar-header">
@@ -275,12 +273,9 @@
 
 								
 							<li class="drop"><a class="features" href="{{ URL::to('apply/for/loan')}}">Apply for loan</a></li>
-
+							<li><a class="travel" href="{{ URL::to('contact')}}">Contact  </a></li>
 							</ul>
-							<form class="navbar-form navbar-right" role="search">
-								<input type="text" id="search" name="search" placeholder="Search here">
-								<button type="submit" id="search-submit"><i class="fa fa-search"></i></button>
-							</form>
+							
 						</div>
 						<!-- /.navbar-collapse -->
 					</div>
@@ -326,102 +321,54 @@
 								</ul>
 							</div>
 						</div>
+						@php
+							$data = DB::table('sme_blogs')->where('approved', 2)->orderBy('id', 'DESC')->paginate(3);
+						@endphp
 						<div class="col-md-3">
 							<div class="widget posts-widget">
 								<h1>Random Post</h1>
 								<ul class="list-posts">
+									@foreach ($data as $item)
+										
+								
 									<li>
-										<img src="upload/news-posts/listw4.jpg" alt="">
+										<img src="{{ asset('upload/'. $item->image_name) }}" alt="">
 										<div class="post-content">
-											<a href="travel.html">travel</a>
-											<h2><a href="single-post.html">Pellentesque odio nisi, euismod in ultricies in, diam. </a></h2>
+											<a href="#">travel</a>
+											<h2><a href="#">{{ $item->headline}} </a></h2>
 											<ul class="post-tags">
-												<li><i class="fa fa-clock-o"></i>27 may 2013</li>
+											<li><i class="fa fa-clock-o"></i>{{ $item->created_at }}</li>
 											</ul>
 										</div>
 									</li>
-
-									<li>
-										<img src="upload/news-posts/listw1.jpg" alt="">
-										<div class="post-content">
-											<a href="business.html">business</a>
-											<h2><a href="single-post.html">Sed arcu. Cras consequat.</a></h2>
-											<ul class="post-tags">
-												<li><i class="fa fa-clock-o"></i>27 may 2013</li>
-											</ul>
-										</div>
-									</li>
-
-									<li>
-										<img src="upload/news-posts/listw3.jpg" alt="">
-										<div class="post-content">
-											<a href="tech.html">tech</a>
-											<h2><a href="single-post.html">Phasellus ultrices nulla quis nibh. Quisque a lectus.</a></h2>
-											<ul class="post-tags">
-												<li><i class="fa fa-clock-o"></i>27 may 2013</li>
-											</ul>
-										</div>
-									</li>
+									@endforeach
+									
 								</ul>
 							</div>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<div class="widget categories-widget">
 								<h1>Hot Categories</h1>
 								<ul class="category-list">
+									
 									<li>
-										<a href="#">Business <span>12</span></a>
+									<a href="#">Bankers News  <span>{{ DB::table('sme_blogs')->where('approved', 2)->where('cat_id', 3)->orderBy('id', 'DESC')->count()}}</span></a>
+
 									</li>
 									<li>
-										<a href="#">Sport <span>26</span></a>
+									<a href="#">Fashion News  <span>{{ DB::table('sme_blogs')->where('approved', 2)->where('cat_id', 2)->orderBy('id', 'DESC')->count()}}</span></a>
 									</li>
 									<li>
-										<a href="#">LifeStyle <span>55</span></a>
+									<a href="#">Blog News   <span>{{ DB::table('sme_blogs')->where('approved', 2)->where('cat_id', 4)->orderBy('id', 'DESC')->count()}}</span></a>
 									</li>
 									<li>
-										<a href="#">Fashion <span>37</span></a>
+									<a href="#">Technology News   <span>{{ DB::table('sme_blogs')->where('approved', 2)->where('cat_id', 1)->orderBy('id', 'DESC')->count()}}</span></a>
 									</li>
-									<li>
-										<a href="#">Technology <span>62</span></a>
-									</li>
-									<li>
-										<a href="#">Music <span>10</span></a>
-									</li>
-									<li>
-										<a href="#">Culture <span>43</span></a>
-									</li>
-									<li>
-										<a href="#">Design <span>74</span></a>
-									</li>
-									<li>
-										<a href="#">Entertainment <span>11</span></a>
-									</li>
-									<li>
-										<a href="#">video <span>41</span></a>
-									</li>
-									<li>
-										<a href="#">Travel <span>11</span></a>
-									</li>
-									<li>
-										<a href="#">Food <span>29</span></a>
-									</li>
+									
 								</ul>
 							</div>
 						</div>
-						<div class="col-md-3">
-							<div class="widget flickr-widget">
-								<h1>Flickr Photos</h1>
-								<ul class="flickr-list">
-									<li><a href="#"><img src="upload/flickr/1.jpg" alt=""></a></li>
-									<li><a href="#"><img src="upload/flickr/2.jpg" alt=""></a></li>
-									<li><a href="#"><img src="upload/flickr/3.jpg" alt=""></a></li>
-									<li><a href="#"><img src="upload/flickr/4.jpg" alt=""></a></li>
-									<li><a href="#"><img src="upload/flickr/5.jpg" alt=""></a></li>
-									<li><a href="#"><img src="upload/flickr/6.jpg" alt=""></a></li>
-								</ul>
-								<a href="#">View more photos...</a>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 				<div class="footer-last-line">
@@ -432,10 +379,9 @@
 						<div class="col-md-6">
 							<nav class="footer-nav">
 								<ul>
-									<li><a href="index.html">Home</a></li>
+								<li><a href="{{ URL::to('/home')}}">Home</a></li>
 									
-									<li><a href="about.html">About</a></li>
-									<li><a href="contact.html">Contact</a></li>
+								<li><a href="{{ URL::to('/contact')}}">Contact</a></li>
 								</ul>
 							</nav>
 						</div>

@@ -347,19 +347,23 @@
                                
                                   
                                 </div>
-    
+                                @if(session()->has('success'))
+                                <div class="alert alert-success">
+                                    {{ session()->get('success') }}
+                                </div>
+                            @endif
                                 <div class="widget subscribe-widget">
-                                    <form class="subscribe-form">
+                                <form method="POST" action="{{ URL::to('/newsletter/post')}}">
+                                    @csrf 
                                         <h1>Subscribe to RSS Feeds</h1>
-                                        <input type="text" name="sumbscribe" id="subscribe" placeholder="Email"/>
-                                        <button id="submit-subscribe">
+                                        <input type="text" name="subscribe" id="subscribe" placeholder="Email"/>
+                                        <button>
                                             <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                         <p>Get all latest content delivered to your email a few times a month.</p>
                                     </form>
                                 </div>
-    
-                            
+                               
     
                                 <div class="advertisement">
                                     <div class="desktop-advert">
