@@ -49,6 +49,9 @@
 
 								<ul class="top-line-list">
 									<!-- Authentication Links -->
+									<li class="nav-item">
+											<a style="color:springgreen" class="nav-link" href="{{ URL::to('/') }}">{{ __('Home') }}</a>
+										</li>
 									@guest
 										<li class="nav-item">
 											<a style="color:springgreen" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -93,8 +96,12 @@
 
 				<!-- Logo & advertisement -->
 				<div class="logo-advertisement">
-					<div class="container" style="background-image: url({{ asset($settings->image)}});">
-
+					<div class="container"  style="background-image: url({{ asset($settings->image)}});" height="300px">
+<br>
+<br>
+<br>
+<br>
+<br>
 						<!-- Brand and toggle get grouped for better mobile display -->
 						<div class="navbar-header">
 							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -103,7 +110,7 @@
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-						<a class="navbar-brand" href="{{ URL::to('/')}}"><img style="width:100px; hight:100px" src="{{ $settings->logo }}" alt=""></a>
+						<a class="navbar-brand" href="{{ URL::to('/')}}"></a>
 						</div>
 
 					</div>
@@ -117,31 +124,31 @@
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-left">
 
-							<li><a class="home" href="{{ URL::to('/')}}">Home</a></li>
+
+							<li><a class="home" href="#">Front Page News </a>
+								<div class="megadropdown">
+									<div class="container">
+										<div class="inner-megadropdown tech-dropdown">
+
+											<div class="owl-wrapper">
+												<ol class="">
+												<button type="button" class="btn btn-info" onclick="window.location = '{{ URL::to('sme/news/post')}}'" >Post News </button>
+													
+											   </ol>
+											
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</li>
 
 						
 								<li><a class="travel" href="{{ URL::to('sme/archive')}}">Archive </a></li>
 
 							
-								<li><a class="tech" href="#">SME Blog </a>
-									<div class="megadropdown">
-										<div class="container">
-											<div class="inner-megadropdown tech-dropdown">
-
-												<div class="owl-wrapper">
-													<ol class="">
-													<button type="button" class="btn btn-info" onclick="window.location = '{{ URL::to('sme/news/post')}}'" >Post News </button>
-														
-														<button type="button" class="btn btn-info" onclick="window.location = ''">All News </button>
-															
-															
-												   </ol>
-												
-												</div>
-
-											</div>
-										</div>
-									</div>
+								<li><a class="tech" href="{{ URL::to('sme/all/blog/news')}}">SME Blog </a>
+									
 								</li>
 								<li><a class="tech" href="#">Help Desk </a>
 									<div class="megadropdown">
@@ -304,82 +311,52 @@
 								<p>SME Banglades is an accomplishment of Optima Solution, a dedicated team for developing SMEs of the country and contribute to our journey to developing economy.</p>
 								
 							</div>
-							<div class="widget social-widget">
-								<h1>Stay Connected</h1>
-								<ul class="social-icons">
-									<li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#" class="google"><i class="fa fa-google-plus"></i></a></li>
-									<li><a href="#" class="twitter"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#" class="youtube"><i class="fa fa-youtube"></i></a></li>
-									<li><a href="#" class="instagram"><i class="fa fa-instagram"></i></a></li>
-									<li><a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a></li>
-									<li><a href="#" class="vimeo"><i class="fa fa-vimeo-square"></i></a></li>
-									<li><a href="#" class="dribble"><i class="fa fa-dribbble"></i></a></li>
-									<li><a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a></li>
-									<li><a href="#" class="flickr"><i class="fa fa-flickr"></i></a></li>
-									<li><a href="#" class="rss"><i class="fa fa-rss"></i></a></li>
-								</ul>
-							</div>
+							
 						</div>
 						@php
 							$data = DB::table('sme_blogs')->where('approved', 2)->orderBy('id', 'DESC')->paginate(3);
 						@endphp
-						<div class="col-md-3">
-							<div class="widget posts-widget">
-								<h1>Random Post</h1>
-								<ul class="list-posts">
-									@foreach ($data as $item)
-										
-								
-									<li>
-										<img src="{{ asset('upload/'. $item->image_name) }}" alt="">
-										<div class="post-content">
-											<a href="#">travel</a>
-											<h2><a href="#">{{ $item->headline}} </a></h2>
-											<ul class="post-tags">
-											<li><i class="fa fa-clock-o"></i>{{ $item->created_at }}</li>
-											</ul>
-										</div>
-									</li>
-									@endforeach
-									
-								</ul>
-							</div>
-						</div>
+						
 						<div class="col-md-4">
 							<div class="widget categories-widget">
 								<h1>Hot Categories</h1>
 								<ul class="category-list">
 									
 									<li>
-									<a href="#">Bankers News  <span>{{ DB::table('sme_blogs')->where('approved', 2)->where('cat_id', 3)->orderBy('id', 'DESC')->count()}}</span></a>
+									<a href="#">Bankers News  <span>{{ DB::table('sme_blogs')->where('approved', 1)->where('cat_id', 3)->orderBy('id', 'DESC')->count()}}</span></a>
 
 									</li>
 									<li>
-									<a href="#">Fashion News  <span>{{ DB::table('sme_blogs')->where('approved', 2)->where('cat_id', 2)->orderBy('id', 'DESC')->count()}}</span></a>
+									<a href="#">Fashion News  <span>{{ DB::table('sme_blogs')->where('approved', 1)->where('cat_id', 2)->orderBy('id', 'DESC')->count()}}</span></a>
 									</li>
 									<li>
-									<a href="#">Blog News   <span>{{ DB::table('sme_blogs')->where('approved', 2)->where('cat_id', 4)->orderBy('id', 'DESC')->count()}}</span></a>
+									<a href="#">Blog News   <span>{{ DB::table('sme_blogs')->where('approved', 1)->where('cat_id', 4)->orderBy('id', 'DESC')->count()}}</span></a>
 									</li>
 									<li>
-									<a href="#">Technology News   <span>{{ DB::table('sme_blogs')->where('approved', 2)->where('cat_id', 1)->orderBy('id', 'DESC')->count()}}</span></a>
+									<a href="#">Technology News   <span>{{ DB::table('sme_blogs')->where('approved', 1)->where('cat_id', 1)->orderBy('id', 'DESC')->count()}}</span></a>
 									</li>
 									
 								</ul>
 							</div>
 						</div>
+
+						<div class="col-md-3">
+								<div class="widget posts-widget">
+									<p style="color:aqua">advertisement</p>
+								</div>
+							</div>
 						
 					</div>
 				</div>
 				<div class="footer-last-line">
 					<div class="row">
 						<div class="col-md-6">
-							<p>&copy; COPYRIGHT 2015 hotmagazine.com</p>
+							<p>&copy; COPYRIGHT 2019 Optima Solutions</p>
 						</div>
 						<div class="col-md-6">
 							<nav class="footer-nav">
 								<ul>
-								<li><a href="{{ URL::to('/home')}}">Home</a></li>
+								<li><a href="{{ URL::to('/home')}}">Developed By Optima Solutions </a></li>
 									
 								<li><a href="{{ URL::to('/contact')}}">Contact</a></li>
 								</ul>
@@ -406,7 +383,53 @@
 	<script type="text/javascript" src="{{ asset('assets/js/retina-1.1.0.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/js/plugins-scroll.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('assets/js/script.js') }}"></script>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
+	
+<script>
+		//Get the button
+		var mybutton = document.getElementById("myBtn");
+		
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function() {scrollFunction()};
+		
+		function scrollFunction() {
+		  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			mybutton.style.display = "block";
+		  } else {
+			mybutton.style.display = "none";
+		  }
+		}
+		
+		// When the user clicks on the button, scroll to the top of the document
+		function topFunction() {
+		  document.body.scrollTop = 0;
+		  document.documentElement.scrollTop = 0;
+		}
+		</script>
+
+		<style>
+		
+		#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+		</style>
 </body>
 
 

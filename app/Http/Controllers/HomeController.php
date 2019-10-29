@@ -25,16 +25,17 @@ class HomeController extends Controller
 
     public function index(){
         $smes_and_bankers_news = DB::table('sme_blogs')->where('approved', 1)->where('cat_id', 3)->orderBy('id', 'DESC')->get();
-        $fashion_news_admins = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 2)->paginate(3);
-        $miscelleneous_news = DB::table('sme_blogs')->orderBy('id', 'DESC')->get();
-        $technology_news = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 1)->simplePaginate(1);
-        $tech = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 1)->simplePaginate(4);
-        $technology = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 1)->first();
-        $blog_requests = DB::table('sme_blogs')->orderBy('id', 'DESC')->get()->where('approved', 1)->where('cat_id', 4);
-        $blogs = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 4)->paginate(3);
+        $fashion_news_admins = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 2)->get();
+        $miscelleneous_news = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 5)->get();
+        $technology_news = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 1)->get();
+        $blogs = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 4)->get();
         $settings = DB::table('settings')->first();
         $services = DB::table('services')->get();
+        $top = DB::table('sme_blogs')->where('approved', 1)->where('top', 1)->get();
+        $breaking = DB::table('sme_blogs')->where('approved', 1)->where('breaking', 1)->get();
 
-        return view('home', compact('tech','blogs','smes_and_bankers_news', 'fashion_news_admins', 'miscelleneous_news', 'technology_news', 'blog_requests', 'settings', 'services', 'technology'));
+     
+
+        return view('home', compact('top','blogs','smes_and_bankers_news', 'fashion_news_admins', 'miscelleneous_news', 'technology_news', 'breaking', 'settings', 'services', 'technology'));
     }
 }

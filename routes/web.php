@@ -3,6 +3,8 @@
 Route::get('/', 'HomeController@index');
 
 Route::get('sme/bankers/news/details/{id}', 'DetailsController@bankers_news');
+Route::get('top/stories/{id}', 'DetailsController@top_stories');
+Route::get('breaking/news/details/{id}', 'DetailsController@breaking_news');
 Route::get('sme/fashion/news/details/{id}', 'DetailsController@fashon_news');
 Route::get('sme/miscelleneous/news/details/{id}', 'DetailsController@miscelleneous_news');
 Route::get('sme/technology/news/details/{id}', 'DetailsController@technology_news');
@@ -12,6 +14,13 @@ Route::get('sme/blog', 'BlogController@index');
 Route::get('sme/news/post', 'NewsController@news')->middleware('auth');
 Route::post('news/submit', 'NewsController@news_submit');
 Route::get('news/details/view', 'NewsController@news_approve');
+Route::get('news/details/top/news/{id}', 'NewsController@news_top');
+Route::get('news/details/breaking/news/{id}', 'NewsController@news_breaking');
+Route::get('sme/all/blog/news', 'NewsController@blog_post');
+
+
+
+
 Route::get('news/details/news/approve/{id}', 'NewsController@news_approve_done');
 Route::get('news/details/news/arcive/{id}', 'NewsController@news_archive_done');
 Route::get('news/details/news/delete/{id}', 'NewsController@news_delete');

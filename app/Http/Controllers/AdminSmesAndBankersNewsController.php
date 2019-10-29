@@ -340,7 +340,19 @@
 			$this->cbView('custom_add_view',$data);
 		  }
 
-
+		  public function getEdit($id) {
+			//Create an Auth
+			if(!CRUDBooster::isUpdate() && $this->global_privilege==FALSE || $this->button_edit==FALSE) {    
+			  CRUDBooster::redirect(CRUDBooster::adminPath(),trans("crudbooster.denied_access"));
+			}
+			
+			$data = [];
+			$data['page_title'] = 'Edit Data';
+			$data['row'] = DB::table('sme_blogs')->where('id',$id)->first();
+			
+			//Please use cbView method instead view method from laravel
+			$this->cbView('custom_edit_view',$data);
+		  }
 	    //By the way, you can still create your own method in here... :) 
 
 

@@ -18,7 +18,7 @@
         <div class="card bg-light">
            
  
-                <form method="POST" action="{{ URL::to('news/submit')}}" enctype="multipart/form-data">
+         <form method="POST" action="{{ URL::to('news/submit')}}" enctype="multipart/form-data">
                         @csrf
             <div class="col-md-8">
                     <div  class="form-group row">

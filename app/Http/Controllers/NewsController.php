@@ -59,7 +59,7 @@ class NewsController extends Controller
                     return Datatables::of($data)
                             ->addIndexColumn()
                             ->addColumn('action', function($row){
-                                return '<a href="news/approve/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Approve</a> <a href="news/arcive/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-remove"></i>Archive</a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                                return '<a href="news/approve/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Approve</a><a href="top/news/'.$row->id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-ok"></i>Top News</a><a href="breaking/news/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Breaking </a> <a href="news/arcive/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-remove"></i>Archive</a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
                             })
                             ->rawColumns(['action'])
                             ->make(true);
@@ -76,6 +76,25 @@ class NewsController extends Controller
                     'approved' => 1,
                 ]);
                 return back()->with('success', 'News Published Succesfully! ');
+              
+            }
+            public function news_top($id){
+                $data = DB::table('sme_blogs')
+                
+                ->where('id', $id)->update([
+                
+                    'top' => 1,
+                ]);
+                return back()->with('success', 'News Has been set to Top Stories Succesfully! ');
+            }
+            public function news_breaking ($id){
+                $data = DB::table('sme_blogs')
+                
+                ->where('id', $id)->update([
+                
+                    'breaking' => 1,
+                ]);
+                return back()->with('success', 'News Has been set to breaking Succesfully! ');
               
             }
             public function news_archive_done ($id){
@@ -96,18 +115,17 @@ class NewsController extends Controller
             }
             public function news_archive (){
 
-        $smes_and_bankers_news = DB::table('sme_blogs')->where('approved', 2)->where('cat_id', 3)->orderBy('id', 'DESC')->get();
-        $fashion_news_admins = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 2)->paginate(3);
-        $miscelleneous_news = DB::table('sme_blogs')->orderBy('id', 'DESC')->get();
-        $technology_news = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 1)->simplePaginate(1);
-        $tech = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 1)->simplePaginate(4);
-        $technology = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 1)->first();
-        $blog_requests = DB::table('sme_blogs')->orderBy('id', 'DESC')->get()->where('approved', 2)->where('cat_id', 4);
-        $blogs = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 4)->paginate(3);
-        $settings = DB::table('settings')->first();
-        $services = DB::table('services')->get();
+                $smes_and_bankers_news = DB::table('sme_blogs')->where('approved', 2)->where('cat_id', 3)->orderBy('id', 'DESC')->get();
+                $fashion_news_admins = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 2)->get();
+                $miscelleneous_news = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 5)->get();
+                $technology_news = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 2)->where('cat_id', 1)->get();
+                $blogs = DB::table('sme_blogs')->orderBy('id', 'DESC')->where('approved', 1)->where('cat_id', 4)->get();
+                $settings = DB::table('settings')->first();
+                $services = DB::table('services')->get();
+                $top = DB::table('sme_blogs')->where('approved', 2)->where('top', 1)->get();
+                $breaking = DB::table('sme_blogs')->where('approved', 2)->where('breaking', 1)->get();
 
-        return view('news_archive', compact('tech','blogs','smes_and_bankers_news', 'fashion_news_admins', 'miscelleneous_news', 'technology_news', 'blog_requests', 'settings', 'services', 'technology'));
+        return view('news_archive', compact('top','blogs','smes_and_bankers_news', 'fashion_news_admins', 'miscelleneous_news', 'technology_news', 'breaking', 'settings', 'services', 'technology'));
               
             }
 
@@ -128,11 +146,16 @@ class NewsController extends Controller
         return back()->with('success','Thanks for subscribing to our newsletter.');
 
                 }
-            public function contact_create (Request $request)
-            {
-
+        public function contact_create (Request $request)
+        {
 
         return view('contact');
 
-                }
+        }
+        public function blog_post ()
+        {
+        $blogs = DB::table('sme_blogs')->where('cat_id', 4)->get();
+        return view('blog_post', compact('blogs'));
+
+        }
 }

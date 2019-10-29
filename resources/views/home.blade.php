@@ -13,74 +13,19 @@
                     <div class="ticker-news-box">
                         <span class="breaking-news">breaking news</span>
                         <ul id="js-news">
-                        @foreach ($smes_and_bankers_news as $item)
+                        @foreach ($breaking as $item)
                             
-                            <li class="news-item"><span class="time-news">{{ date('d-m-Y', strtotime($item->created_at))}}</span>  <a href="{{ URL::to('sme/bankers/news/details/'.$item->id )}}">{{ $item->headline}} </a> - {{ Str::words($item->detail, '10', '...')}}</li>
+                            <li class="news-item"><span class="time-news">{{ date('d-m-Y', strtotime($item->created_at))}}</span>  <a href="{{ URL::to('breaking/news/details/'.$item->id )}}">{{ $item->headline}} </a> - {{ Str::words($item->detail, '10', '...')}}</li>
                             @endforeach
                         </ul>
                     </div>
     
-                    <div class="iso-call heading-news-box">
-                        <div class="image-slider snd-size">
-                            <span class="top-stories">TOP STORIES</span>
-                            <ul class="bxslider">
-                                    @foreach ($smes_and_bankers_news as $item)
-                                <li>
-                                    <div class="news-post image-post">
-                                   
-                                    <img src="{{ asset('uploads/'.$item->image_name) }}" alt="">
-                                       
-                                        <div class="hover-box">
-                                            <div class="inner-hover">
-                                                <a class="category-post sport" href="sport.html">SMEs and Bankers </a>
-                                                <h2 style="color:aquamarine"><a href="{{ URL::to('sme/bankers/news/details/'.$item->id )}}">{{ $item->headline}} </a></h2>
-                                                <ul class="post-tags">
-                                                <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($item->created_at))}}</li>
-                                                <li><i class="fa fa-user"></i>by <a href="#">{{$item->news_provider}}</a></li>
-                                                <li><a href="{{ URL::to('sme/bankers/news/details/'.$item->id )}}"></a></li>
-                                               
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                               
-                                    
-                                
-                                @endforeach
-                          
-                            </ul>
-                        </div>
-                        @foreach ($tech as $item)
-                            
-                       
-                        <div class="news-post image-post default-size">
-                        <img src="{{ asset('uploads/'.$item->image_name) }}" alt="">
-                            <div class="hover-box">
-                                <div class="inner-hover">
-                                    <a class="category-post travel" href="#">Technology </a>
-                                <h2><a href="{{ URL::to('sme/technology/news/details/'.$item->id )}}">{{ $item->headline}}</a></h2>
-                                    <ul class="post-tags">
-                                       
-                                    </ul>
-                                   
-                                </div>
-                            </div>
-                        </div>
-    
-                        @endforeach
-                  
-    
-                     
-    
-                    </div>
+                    
                 </div>
     
             </section>
             <!-- End heading-news-section -->
-    
-            <!-- block-wrapper-section
-                ================================================== -->
+ 
             <section class="block-wrapper">
                 <div class="container">
                     <div class="row">
@@ -93,187 +38,157 @@
                                 <div class="grid-box">
     
                                     <div class="title-section">
-                                        <h1><span>Today's Featured</span></h1>
+                                        <h1><span>Top Stories </span></h1>
                                     </div>
     
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="news-post image-post2">
-                                                <div class="post-gallery">
-                                                <img src="{{ asset('uploads/'.$item->image_name) }}" alt="">
-                                                    <div class="hover-box">
-                                                        <div class="inner-hover">
-                                                            <a class="category-post tech" href="tech.html">Technology </a>
-                                                        <h2><a href="{{ URL::to('sme/technology/news/details/'. $item->id )}}">{{$technology->headline}}</a></h2>
-                                                            <ul class="post-tags">
-                                                                <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($technology->created_at))}}</li>
-                                                            <li><i class="fa fa-user"></i>by <a href="#">{{$technology->news_provider}}</a></li>
-                                                                
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="col-md-10">
+                                                <div class="owl-wrapper">
+														<div class="owl-carousel" data-num="4">
+														@foreach ($top as $item)
+                                                            
+															<div class="item news-post standard-post">
+																<div class="post-gallery">
+                                                                <img src="{{ asset('uploads/'.$item->image_name )}}" alt="" height="180px" width="100%">
+																</div>
+																<div class="post-content">
+                                                                <h2><a href="{{ URL::to('top/stories/'.$item->id )}}">{{ $item->headline }}</a></h2>
+																	<ul class="post-tags">
+																		<li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($item->created_at))}}</li>
+																		
+																	</ul>
+																</div>
+                                                            </div>
+                                                        @endforeach
+                                                            
+														</div>
+													</div>
                                         </div>
     
-                                        <div class="col-md-6">
-                                            <ul class="list-posts">
-                                                @foreach ($fashion_news_admins as $item)
-                                                    
-                                                <li>
-                                                <img src="{{ $item->image_name}}" alt="">
-                                                    <div class="post-content">
-                                                        <a href="#">Fashion News </a>
-                                                    <h2><a href="{{ URL::to('sme/fashion/news/details/'. $item->id )}}">{{ $item->headline}} </a></h2>
-                                                        <ul class="post-tags">
-                                                            <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($item->created_at))}}</li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                @endforeach
-    
-                                            </ul>
-                                        </div>
+                                        
                                     </div>
 
                                 </div>
-                                <!-- End grid box -->
-    
-                                <!-- google addsense -->
-                                <div class="advertisement">
-                                    <div class="desktop-advert">
-                                        <span>Advertisement</span>
-                                        <img src="upload/addsense/728x90-white.jpg" alt="">
-                                    </div>
-                                    <div class="tablet-advert">
-                                        <span>Advertisement</span>
-                                        <img src="upload/addsense/468x60-white.jpg" alt="">
-                                    </div>
-                                    <div class="mobile-advert">
-                                        <span>Advertisement</span>
-                                        <img src="upload/addsense/300x250.jpg" alt="">
-                                    </div>
-                                </div>
-                                <!-- End google addsense -->
-    
-                       
-                                <!-- End grid-box -->
-    
-                                <!-- carousel box -->
-                                <div class="carousel-box owl-wrapper">
-    
-                                    <div class="title-section">
-                                        <h1><span class="world">Blog</span></h1>
-                                    </div>
-    
-                                    <div class="owl-carousel" data-num="2">
-                                    @foreach ($blog_requests as $item)
-                                        
-                                        <div class="item">
-                                            <div class="news-post image-post2">
-                                                <div class="post-gallery">
-                                                <img src="{{ asset('uploads/'.$item->image_name) }}" alt="">
-                                                    <div class="hover-box">
-                                                        <div class="inner-hover">
-                                                            <h2><a href="{{ URL::to('sme/blog/news/details/'. $item->id )}}">Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. </a></h2>
-                                                            <ul class="post-tags">
-                                                                <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                                            <li><i class="fa fa-user"></i>by <a href="#">{{ $item->news_provider}}</a></li>
-                                                              
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-    
-                                            <ul class="list-posts">
-                                                @foreach ($blogs as $item)
-                                                    
-                                                <li>
-                                                    <img src="{{ asset('uploads/'.$item->image_name) }}" alt="">
-                                                    <div class="post-content">
-                                                    <h2><a href="{{ URL::to('sme/blog/news/details/'. $item->id )}}">Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. </a></h2>
-                                                        <ul class="post-tags">
-                                                            <li><i class="fa fa-clock-o"></i>27 may 2013</li>
-                                                        </ul>
-                                                    </div>
-                                                </li>
-                                                @endforeach
-    
-                                             
-                                            </ul>									
-                                        </div>
-                                    
-                                        
-                                        @endforeach
-                                    
-                                        
-    
-                                    </div>
-    
-                                </div>
-                                <!-- End carousel box -->
-    
-                                <!-- google addsense -->
-                                <div class="advertisement">
-                                    <div class="desktop-advert">
-                                        <span>Advertisement</span>
-                                        <img src="upload/addsense/728x90-white.jpg" alt="">
-                                    </div>
-                                    <div class="tablet-advert">
-                                        <span>Advertisement</span>
-                                        <img src="upload/addsense/468x60-white.jpg" alt="">
-                                    </div>
-                                    <div class="mobile-advert">
-                                        <span>Advertisement</span>
-                                        <img src="upload/addsense/300x250.jpg" alt="">
-                                    </div>
-                                </div>
-                                <!-- End google addsense -->
-    
-                                <!-- article box -->
-                                <div class="article-box">
-    
-                                    <div class="title-section">
-                                        <h1><span>Latest Articles</span></h1>
-                                    </div>
-                                    @foreach ($fashion_news_admins as $item)
-                                        
-                                
-                                    <div class="news-post article-post">
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <div class="post-gallery">
-                                                <img alt="" src="{{ asset('uploads/'.$item->image_name) }}">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-7">
-                                                <div class="post-content">
-                                                <h2><a href="{{ URL::to('sme/fashion/news/details/'. $item->id )}}">{{ $item->headline }}</a></h2>
-                                                    <ul class="post-tags">
-                                                        <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($item->created_at))}}</li>
-                                                        <li><i class="fa fa-user"></i>by <a href="#">{{ $item->news_provider }}</a></li>
+                                <br>
+                                <br>
+                               
+    <!-- grid-box -->
+        <div class="grid-box">
 
-                                                    </ul>
-                                                    <p>Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.</p>
-                                                    <a href="{{ URL::to('sme/fashion/news/details/'. $item->id )}}" class="read-more-button"><i class="fa fa-arrow-circle-right"></i>Read More</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                                
-                                <!-- End article box -->
-    
-                                <!-- pagination box -->
-                                <div class="pagination-box">
-                                    <ul class="pagination-list">
-                                            {!! $fashion_news_admins->render() !!}
-                                    </ul>
-                                    
-                                </div>
-                                <!-- End Pagination box -->
+            <div class="title-section">
+                <h1><span class="world">Bankers News </span></h1>
+            </div>
+        <br>
+        <br>
+    <div class="row">
+        @foreach ($smes_and_bankers_news as $item)
+            
+
+        <div class="col-md-4" height="300px">
+            <div class="news-post video-post">
+            <img alt="" src="{{ asset('uploads/'.$item->image_name)}}" height="200px">
+               
+                <div class="hover-box">
+                <h2><a href="{{ URL::to('sme/bankers/news/details/'.$item->id)}}">{{ $item->headline }}</a></h2>
+                    <ul class="post-tags">
+                        <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($item->created_at))}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+<!-- End grid-box -->
+                               
+    <!-- grid-box -->
+        <div class="grid-box">
+
+            <div class="title-section">
+                <h1><span class="world">Technology News </span></h1>
+            </div>
+        <br>
+        <br>
+    <div class="row">
+        @foreach ($technology_news as $item)
+            
+
+        <div class="col-md-4" height="300px">
+            <div class="news-post video-post">
+            <img alt="" src="{{ asset('uploads/'.$item->image_name)}}" height="200px">
+               
+                <div class="hover-box">
+                <h2><a href="{{ URL::to('sme/bankers/news/details/'.$item->id)}}">{{ $item->headline }}</a></h2>
+                    <ul class="post-tags">
+                        <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($item->created_at))}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+<!-- End grid-box -->
+    <!-- grid-box -->
+        <div class="grid-box">
+
+            <div class="title-section">
+                <h1><span class="world">Miscelleneous News </span></h1>
+            </div>
+        <br>
+        <br>
+    <div class="row">
+        @forelse ($miscelleneous_news as $item)
+            
+
+        <div class="col-md-4" height="300px">
+            <div class="news-post video-post">
+            <img alt="" src="{{ asset('uploads/'.$item->image_name)}}" height="200px">
+               
+                <div class="hover-box">
+                <h2><a href="{{ URL::to('sme/bankers/news/details/'.$item->id)}}">{{ $item->headline }}</a></h2>
+                    <ul class="post-tags">
+                        <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($item->created_at))}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @empty
+        <p>There is no Post about this Category. </p>
+        @endforelse
+    </div>
+</div>
+<!-- End grid-box -->
+                               
+
+    <!-- grid-box -->
+        <div class="grid-box">
+
+            <div class="title-section">
+                <h1><span class="world">Fashion News </span></h1>
+            </div>
+        <br>
+        <br>
+    <div class="row">
+        @foreach ($fashion_news_admins as $item)
+            
+
+        <div class="col-md-4" height="300px">
+            <div class="news-post video-post">
+            <img alt="" src="{{ asset('uploads/'.$item->image_name)}}" height="200px">
+               
+                <div class="hover-box">
+                <h2><a href="{{ URL::to('sme/bankers/news/details/'.$item->id)}}">{{ $item->headline }}</a></h2>
+                    <ul class="post-tags">
+                        <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($item->created_at))}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+
     
                             </div>
                             <!-- End block content -->
@@ -312,36 +227,6 @@
                                     </div>
                                 </div>
     
-                                <div class="widget features-slide-widget">
-                                    <div class="title-section">
-                                        <h1><span>Featured Posts</span></h1>
-                                    </div>
-                                    <div class="image-post-slider">
-                                        <ul class="bxslider">
-                                            @foreach ($miscelleneous_news as $item)
-                                                
-                                            <li>
-                                                <div class="news-post image-post2">
-                                                    <div class="post-gallery">
-                                                    <img src="{{ asset('uploads/'.$item->image_name) }}" alt="">
-                                                        <div class="hover-box">
-                                                            <div class="inner-hover">
-                                                            <h2><a href="{{ URL::to('sme/miscelleneous/news/details/'.$item->id )}}">{{$item->headline }}</a></h2>
-                                                                <ul class="post-tags">
-                                                                    <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($item->created_at))}}</li>
-                                                                    <li><i class="fa fa-user"></i>by <a href="#">{{$item->news_provider }}</a></li>
-                                                                  
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            @endforeach
-                                            
-                                        </ul>
-                                    </div>
-                                </div>
     
                                 <div class="widget recent-comments-widget">
                                

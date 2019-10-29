@@ -52,11 +52,16 @@ class DetailsController extends Controller
     public function blog_news($id){
 
         $blog_news = DB::table('sme_blogs')->where('id', $id)->first();
-
-
-
         return view('blog_news', compact( 'blog_news'));
+    }
+    public function top_stories ($id){
 
+        $top_stories = DB::table('sme_blogs')->where('id', $id)->first();
+        return view('top_stories', compact( 'top_stories'));
+    }
+    public function breaking_news ($id){
 
+        $breaking_news = DB::table('sme_blogs')->where('id', $id)->first();
+        return view('breaking_news', compact( 'breaking_news'));
     }
 }
