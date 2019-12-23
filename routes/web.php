@@ -1,6 +1,10 @@
 <?php
 
-Route::get('/', 'HomeController@index');
+use App\Menu; 
+
+Route::get('/', function(){
+    return view ('index');
+});
 
 Route::get('sme/bankers/news/details/{id}', 'DetailsController@bankers_news');
 Route::get('top/stories/{id}', 'DetailsController@top_stories');
@@ -22,12 +26,23 @@ Route::get('sme/all/blog/news', 'NewsController@blog_post');
 
 
 Route::get('news/details/news/approve/{id}', 'NewsController@news_approve_done');
+Route::get('news/details/news/pending/{id}', 'NewsController@news_pending_done');
+
 Route::get('news/details/news/arcive/{id}', 'NewsController@news_archive_done');
+Route::get('news/details/news/unarcive/{id}', 'NewsController@news_unarcive_done');
+
 Route::get('news/details/news/delete/{id}', 'NewsController@news_delete');
 Route::get('sme/archive', 'NewsController@news_archive');
 Route::get('contact', 'NewsController@contact_create');
+Route::get('new/news/view', 'NewsController@new_news');
+Route::get('new/news/edit/{id}', 'NewsController@new_news_edit');
+Route::get('/new/news/delete/{id}', 'NewsController@new_news_delete');
+Route::post('news/update', 'NewsController@new_news_update');
+
 
 Route::post('/newsletter/post', 'NewsController@store');
+
+
 
 Route::post ('/user/register', 'LoginController@register');
 
@@ -85,3 +100,4 @@ Route::get('/config-cache', function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+

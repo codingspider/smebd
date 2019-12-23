@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Menu;
 
 class HomeController extends Controller
 {
@@ -34,8 +35,8 @@ class HomeController extends Controller
         $top = DB::table('sme_blogs')->where('approved', 1)->where('top', 1)->get();
         $breaking = DB::table('sme_blogs')->where('approved', 1)->where('breaking', 1)->get();
 
-     
+        $categories = Menu::with('children')->where('parent_id','=',0)->get();
 
-        return view('home', compact('top','blogs','smes_and_bankers_news', 'fashion_news_admins', 'miscelleneous_news', 'technology_news', 'breaking', 'settings', 'services', 'technology'));
+        return view('home', compact('top','blogs','smes_and_bankers_news', 'fashion_news_admins', 'miscelleneous_news', 'technology_news', 'breaking', 'settings', 'services', 'technology','categories'));
     }
 }

@@ -59,7 +59,28 @@ class NewsController extends Controller
                     return Datatables::of($data)
                             ->addIndexColumn()
                             ->addColumn('action', function($row){
-                                return '<a href="news/approve/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Approve</a><a href="top/news/'.$row->id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-ok"></i>Top News</a><a href="breaking/news/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Breaking </a> <a href="news/arcive/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-remove"></i>Archive</a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+
+                                $x='';
+                                    if($row->approved==1){
+                                        $x.='  <a href="news/pending/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Approved</a> <a href="top/news/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i>Top News</a><a href="breaking/news/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Breaking </a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                                    }
+
+                                    if($row->approved==3){
+                                        $x.='  <a href="news/approve/'.$row->id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-ok"></i> Pending </a> <a href="top/news/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i>Top News</a><a href="breaking/news/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Breaking </a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                                    }
+
+
+                                    if ($row->approved==2) {
+                                        $x.='  <a href="news/unarcive/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-remove"></i>Archived</a> <a href="top/news/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i>Top News</a><a href="breaking/news/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Breaking </a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                                    }
+                                    if ($row->approved==4) {
+                                        $x.='  <a href="news/arcive/'.$row->id.'" class="btn btn-xs btn-secondary"><i class="glyphicon glyphicon-remove"></i>Unarchived</a> <a href="top/news/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i>Top News</a><a href="breaking/news/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Breaking </a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                                    }
+
+
+
+
+                                     return '  '.$x.'';
                             })
                             ->rawColumns(['action'])
                             ->make(true);
@@ -75,7 +96,17 @@ class NewsController extends Controller
                     'status' => 'Approved',
                     'approved' => 1,
                 ]);
-                return back()->with('success', 'News Published Succesfully! ');
+                return back()->with('success', 'News Approved Succesfully! ');
+              
+            }
+             public function news_pending_done($id){
+                $data = DB::table('sme_blogs')
+                
+                ->where('id', $id)->update([
+                    'status' => 'Pending',
+                    'approved' => 3,
+                ]);
+                return back()->with('success', 'News Pending Succesfully! ');
               
             }
             public function news_top($id){
@@ -104,6 +135,16 @@ class NewsController extends Controller
                     'approved' => 2,
                 ]);
                 return back()->with('success', 'News Archived Succesfully! ');
+              
+            }
+
+            public function news_unarcive_done ($id){
+                $data = DB::table('sme_blogs')
+                ->where('id', $id)->update([
+                    'status' => 'UnArchived',
+                    'approved' => 4,
+                ]);
+                return back()->with('success', 'News UnArchived Succesfully! ');
               
             }
             public function news_delete ($id){
@@ -158,4 +199,64 @@ class NewsController extends Controller
         return view('blog_post', compact('blogs'));
 
         }
+
+        public function new_news (Request $request)
+        {
+        
+        if ($request->ajax()) {
+                    $data = DB::table('sme_blogs')
+                    
+                    ->get();
+
+                    return Datatables::of($data)
+                            ->addIndexColumn()
+                            ->addColumn('action', function($row){
+                                return '<a href="edit/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-pencil"></i> Edit </a><a href="delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i>Delete</a>';
+                            })
+                            ->rawColumns(['action'])
+                            ->make(true);
+                }
+        return view('new_news');
+
+        }
+
+        public function new_news_edit ($id){
+
+            $news = DB::table('sme_blogs')->where('id', $id)->first();
+
+            return view('custom_edit_view', compact('news')); 
+        }
+
+        public function new_news_delete ($id){
+
+            $news = DB::table('sme_blogs')->where('id', $id)->delete();
+
+           return back ()->with('success','News Deleted sucessfully');
+        }
+
+        public function new_news_update (Request $request){
+
+            $id = $request->id; 
+           if ($request->hasFile('image_name')) {
+            $image = $request->file('image_name');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/uploads');
+            $image->move($destinationPath, $name);
+            
+        }
+        
+        
+        DB::table('sme_blogs')->where('id', $id)->update([
+            'headline' => $request->headline,
+            'short_description' => $request->short_description,
+            'detail' => $request->detail,
+            'news_source' => $request->news_source,
+            'news_provider' => $request->news_provider,
+            'cat_id' => $request->category_id,
+            'image_name' => $name,
+        ]);
+       
+        return back ()->with('success','News Updated sucessfully');
+        }
+
 }

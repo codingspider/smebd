@@ -42,12 +42,12 @@
     <table  class="table table-bordered data-table">
         <thead bgcolor="#00FF00">
             <tr >
-                <th>No</th>
-                <th>Business Name</th>
-                <th>Business Address</th>
-                <th>Loan Type </th>
-                <th>Loan Amount </th>
-                <th>Loan Status</th>
+               <th>No</th>
+                <th>Headline</th>
+                <th>News Source</th>
+                <th>News Provider</th>
+                <th>News Status </th>
+                <th>Created At</th>
                 <th width="100px">Action</th>
             </tr>
         </thead>
@@ -55,9 +55,7 @@
         </tbody>
     </table>
 </div>
-   
-</body>
-   
+
 <script type="text/javascript">
   $(function () {
     
@@ -78,4 +76,8 @@
     
   });
 </script>
+   
+</body>
+   
+
 @endsection
