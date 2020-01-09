@@ -17,10 +17,11 @@
                     <div class="single-post-box">
 
                         <div class="title-post">
-                        <h1>{{$top_stories->headline}}</h1>
+                        <h1 style="font-size: 30px;">{{$top_stories->headline}}</h1>
                             <ul class="post-tags">
                                 <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($top_stories->created_at))}}</li>
                                 <li><i class="fa fa-user"></i>by <a href="#">{{$top_stories->news_provider}}</a></li>
+                                 <li><i class="fa fa-user"></i>at <a href="#">{{$top_stories->news_source}}</a></li>
                             
                             </ul>
                         </div>
@@ -31,13 +32,13 @@
 
                         <div class="post-gallery">
                             <img src="{{ asset('uploads/'.$top_stories->image_name)}}" alt="">
-                            <span class="image-caption"> Description </span>
+                            <!-- <span class="image-caption"> Description </span> -->
                         </div>
 
                         <div style="color:white" class="post-content">
 
-                            <p>{{$top_stories->short_description}}</p>
-                           <br>
+                           <!-- <p>{{$top_stories->short_description}}</p> -->
+                           
                            <p>{!! $top_stories->detail !!}</p>
                             
                         </div>
@@ -52,13 +53,13 @@
                                 <li><a href="#">Sport</a></li>
                             </ul>
                         </div>
-
+                        <!--
                         <div class="share-post-box">
                             <ul class="share-box">
                                 <div class="sharethis-inline-share-buttons"></div>
                             </ul>
                         </div>
-
+                        -->
 
                     </div>
                     <!-- End single-post box -->

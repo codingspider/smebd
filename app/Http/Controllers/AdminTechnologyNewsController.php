@@ -33,6 +33,7 @@
 			$this->col[] = ["label"=>"Headline","name"=>"headline"];
 			$this->col[] = ["label"=>"Short Description","name"=>"short_description"];
 			$this->col[] = ["label"=>"News Source","name"=>"news_source"];
+			$this->col[] = ["label"=>"Source URL","name"=>"source_url"];
 			$this->col[] = ["label"=>"Image Name","name"=>"image_name"];
 			$this->col[] = ["label"=>"News Provider","name"=>"news_provider"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
@@ -43,6 +44,7 @@
 			$this->form[] = ['label'=>'Short Description','name'=>'short_description','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Detail','name'=>'detail','type'=>'wysiwyg','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'News Source','name'=>'news_source','type'=>'text','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Source URL','name'=>'source_url','type'=>'text','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Image Name','name'=>'image_name','type'=>'upload','validation'=>'required','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'News Provider','name'=>'news_provider','type'=>'text','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE

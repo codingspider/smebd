@@ -1,436 +1,456 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#">
 
 
 <head>
-	<title>@yield('title')</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>@yield('title')</title>
 
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="_token" content="{{csrf_token()}}" />
-	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic' rel='stylesheet' type='text/css'>
-	<link href="../../../maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-	
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}" media="screen">	
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.bxslider.css') }}" media="screen">
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.css') }}" media="screen">
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/magnific-popup.css') }}" media="screen">	
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.css') }}" media="screen">
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="_token" content="{{csrf_token()}}" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/jquery.bxslider.css') }}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.css') }}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/magnific-popup.css') }}" media="screen">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.css') }}" media="screen">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.theme.css') }}" media="screen">
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/ticker-style.css') }}"/>
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" media="screen">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel=”stylesheet” href=” https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
-	<script src=”https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-	
-	<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d8b17b4cb45ad0012b51dcd&product=inline-share-buttons' async='async'></script>
-<!-- include summernote css/js -->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/ticker-style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d8b17b4cb45ad0012b51dcd&product=inline-share-buttons' async='async'></script>
+
+    <!-- include summernote css/js -->
+    <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">-->
+    <!--<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>-->
+    <script type="text/javascript" src="{{ asset('js/jquery-1.js') }}"></script>
 </head>
+<style>
+    .pop-outer {
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 999999999;
+    }
+
+    .pop-inner {
+        background-color: #fff;
+        width: 500px;
+        height: 400px;
+        padding: 25px;
+        margin: 5% auto;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    ul li {
+        display: block;
+        position: relative;
+        float: left;
+    }
+
+    /* This hides the dropdowns */
+
+    li ul {
+        display: none;
+    }
+
+    ul li a {
+
+        display: block;
+        padding: 1em;
+        text-decoration: none;
+        white-space: nowrap;
+        color: #fff;
+
+
+        -webkit-transition: background-color 0.5s;
+
+        -moz-transition: background-color 0.5s;
+
+        -o-transition: background-color 0.5s;
+
+        transition: background-color 0.5s;
+
+    }
+
+    ul li a:hover {
+        background: #E53935;
+        color: #fff;
+        text-decoration: none;
+    }
+
+    /* Display the dropdown */
+
+    @-webkit-keyframes fadeIn {
+
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+
+    }
+
+    @keyframes fadeIn {
+
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+
+    }
+
+    li:hover>ul {
+
+        display: block;
+
+        position: absolute;
+
+        -webkit-animation: fadeIn 1s;
+
+        animation: fadeIn 1s;
+
+    }
+
+    li:hover li {
+        float: none;
+        background: #0077b3;
+    }
+
+
+
+    li:hover li a:hover {
+        background: #0077b3;
+    }
+
+    .main-navigation li ul li {
+        border-top: 0;
+    }
+
+    /* Displays second level dropdowns to the right of the first level dropdown */
+
+    ul ul ul {
+
+        left: 100%;
+
+        top: 0;
+
+    }
+
+    /* Simple clearfix */
+
+    ul:before,
+
+    ul:after {
+
+        content: " ";
+        /* 1 */
+
+        display: table;
+        /* 2 */
+
+    }
+
+    ul:after {
+        clear: both;
+    }
+</style>
 @php
-    $settings = DB::table('settings')->first();
+use App\Menu;
+$settings = DB::table('settings')->first();
+$categories = Menu::with('children')->where('parent_id','=',0)->get();
 @endphp
+
 <body class="boxed">
+    @yield('modal')
+    <div style="display: none;" class="pop-outer">
+        <div class="pop-inner">
+            <button class="close">X</button>
+            <h2>Voting Form</h2>
+            <form action="{{ URL::to('/check/auth/vote/form') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="exampleInputEmail1">User Registration Number</label>
+                    <input type="text" name="voter_reg" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">Enter your sipeaa registration number.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">User Passcode </label>
+                    <input type="text" name="pass_id" class="form-control" id="exampleInputPassword1">
+                    <small id="emailHelp" class="form-text text-muted">Enter your sipeaa user ID.</small>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Verify</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Container -->
+    <div id="container-fluid" style="background-color: #333333">
 
-	<!-- Container -->
-	<div id="container">
+        <header class="clearfix second-style">
+            <!-- Bootstrap navbar -->
+            <nav class="navbar navbar-default navbar-static-top" role="navigation">
 
-		<header class="clearfix second-style">
-			<!-- Bootstrap navbar -->
-			<nav class="navbar navbar-default navbar-static-top" role="navigation">
+                <!-- Top line -->
+                <div class="top-line">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <ul class="top-line-list">
+                                    <!-- Authentication Links -->
+                                    <li class="nav-item">
+                                        <a style="color:springgreen" class="nav-link" href="{{ URL::to('/home') }}">{{ __('Home') }}</a>
+                                    </li>
+                                    <li><a style="color:springgreen" class="open" href="#">Vote</a></li>
+                                    <li><a style="color:springgreen" type="button" data-toggle="modal" data-target="#voter_id" href="#">Voter Passcode Change</a></li>
+                                    @guest
+                                    <li class="nav-item">
+                                        <a style="color:springgreen" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    </li>
+                                    @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a style="color:springgreen" class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    </li>
+                                    @endif
+                                    @else
+                                    <li><a style="color:springgreen" href="#">{{ Auth::user()->name }}</a></li>
 
-				<!-- Top line -->
-				<div class="top-line">
-					<div class="container">
-						<div class="row">
-							<div class="col-md-9">
-							
-
-								<ul class="top-line-list">
-									<!-- Authentication Links -->
-									<li class="nav-item">
-											<a style="color:springgreen" class="nav-link" href="{{ URL::to('/') }}">{{ __('Home') }}</a>
-										</li>
-									@guest
-										<li class="nav-item">
-											<a style="color:springgreen" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-										</li>
-										@if (Route::has('register'))
-											<li class="nav-item">
-												<a style="color:springgreen"  class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-											</li>
-										@endif
-									@else
-										<li style="color:springgreen">
-											{{ Auth::user()->name }}
-										</li>
-										<li>
-												<a class="item" href="{{ route('logout') }}"
-												   onclick="event.preventDefault();
+                                    <li>
+                                        <a style="color:springgreen" href="sme/news/post">Post News </a>
+                                    </li>
+                                    <li>
+                                        <a style="color:springgreen" class="item" href="{{ route('logout') }}" onclick="event.preventDefault();
 																 document.getElementById('logout-form').submit();">
-													{{ __('Logout') }}
-												</a>
-			
-												<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-													@csrf
-												</form>
-											</li>
-									@endguest
-								</ul>
-							</div>	
-							<div class="col-md-3">
-								<ul class="social-icons">
-									<li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-									<li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a class="rss" href="#"><i class="fa fa-rss"></i></a></li>
-									<li><a class="google" href="#"><i class="fa fa-google-plus"></i></a></li>
-									<li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
-									<li><a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
-								</ul>
-							</div>	
-						</div>
-					</div>
-				</div>
-				<!-- End Top line -->
+                                            {{ __('Logout') }}
+                                        </a>
 
-				<!-- Logo & advertisement -->
-				<div class="logo-advertisement">
-					<div class="container"  style="background-image: url({{ asset($settings->image)}});" height="300px">
-<br>
-<br>
-<br>
-<br>
-<br>
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						<a class="navbar-brand" href="{{ URL::to('/')}}"></a>
-						</div>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                    @endguest
+                                </ul>
+                            </div>
+                            <div class="col-md-3">
+                                <ul class="pull-right">
+                                    <li><a class="facebook" href="{{ $settings->facebook }}"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a class="twitter" href="{{ $settings->twitter }}"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a class="youtube" href="{{ $settings->youtube }}"><i class="fa fa-youtube"></i></a></li>
 
-					</div>
-				</div>
-				<!-- End Logo & advertisement -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Top line -->
 
-				<!-- navbar list container -->
-				<div class="nav-list-container">
-					<div class="container">
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-							<ul class="nav navbar-nav navbar-left">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col">
+                            <img style="max-width: 100%; height: auto; margin-left: 20px; margin-right: 20px;" class="img-fluid " src="{{ asset( $settings->image )}}" />
+                        </div>
+                    </div>
+
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="" href="{{ URL::to('/')}}"></a>
+                    </div>
+                </div>
+
+                <!-- navbar list container -->
+                <div class="nav-list-container">
+                    <div class="container">
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <nav>
+
+                                <ul class="main-nagivation">
+
+                                    @each('partials.index', $categories, 'category', 'partials.nothing')
+                                    <form class="navbar-form navbar-right" role="search" action="{{ URL::to('/search') }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <input type="text" id="search" name="search" placeholder="Search here">
+                                        <button type="submit" id="search-submit"><i class="fa fa-search"></i></button>
+                                    </form>
+
+                                </ul>
 
 
-							<li><a class="home" href="#">Front Page News </a>
-								<div class="megadropdown">
-									<div class="container">
-										<div class="inner-megadropdown tech-dropdown">
+                            </nav>
 
-											<div class="owl-wrapper">
-												<ol class="">
-												<button type="button" class="btn btn-info" onclick="window.location = '{{ URL::to('sme/news/post')}}'" >Post News </button>
-													
-											   </ol>
-											
-											</div>
 
-										</div>
-									</div>
-								</div>
-							</li>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                </div>
+                <!-- End navbar list container -->
 
-						
-								<li><a class="travel" href="{{ URL::to('sme/archive')}}">Archive </a></li>
+            </nav>
+            <!-- End Bootstrap navbar -->
 
-							
-								<li><a class="tech" href="{{ URL::to('sme/all/blog/news')}}">SME Blog </a>
-									
-								</li>
-								<li><a class="tech" href="#">Help Desk </a>
-									<div class="megadropdown">
-										<div class="container">
-											<div class="inner-megadropdown tech-dropdown">
+        </header>
+        <script>
+            $(document).ready(function() {
+                $(".open").click(function() {
+                    $(".pop-outer").fadeIn("slow");
+                });
+                $(".close").click(function() {
+                    $(".pop-outer").fadeOut("slow");
+                });
+            });
+        </script>
+        <!-- End Header -->
 
-												<div class="owl-wrapper">
-													<ol class="">
-														<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">DEFINITION OF SME</button>
-															<div id="demo" class="collapse">
-																<div class="container-fluid">
-																	<div class="row">
-																	<div class="col-sm-12 col-lg-12">
-																	</div>
-																	<div class="col-sm-12 col-lg-12">
-																	<table class="table table-bordered" style="font-size: 14px;">
-																	<tbody>
-																	<tr style="background-color: #f9f9f9;">
-																	<td width="40">
-																	<p style="text-align: center;"><strong>SI</strong></p>
-																	</td>
-																	<td colspan="2" width="240">
-																	<p style="text-align: center;"><strong>Type of Industry</strong></p>
-																	</td>
-																	<td style="text-align: center;" width="359"><strong>The amount of investment</strong>
-																	
-																	<strong>(Replacement cost and value of fixed assets, excluding land and factory buildings)</strong></td>
-																	<td width="270">
-																	<p style="text-align: center;"><strong>Number of employed workers</strong></p>
-																	</td>
-																	</tr>
-																	<tr style="background-color: #f9f9f9;">
-																	<td width="40">
-																	<p style="text-align: center;">1.</p>
-																	</td>
-																	<td colspan="2" width="211"><strong>Cottage Industry</strong></td>
-																	<td width="359">Below 10 lakh</td>
-																	<td width="270">number of workers not exceed 15</td>
-																	</tr>
-																	<tr style="background-color: #f9f9f9;">
-																	<td style="text-align: center;" width="40">2.</td>
-																	<td colspan="2" width="211"><strong>Micro Industry</strong></td>
-																	<td width="359">10 lakh to 75 lakh</td>
-																	<td width="270">16 to 30</td>
-																	</tr>
-																	<tr style="background-color: #f9f9f9;">
-																	<td style="text-align: center;" rowspan="2" width="40">3.</td>
-																	<td rowspan="2" width="108"><strong>Small Industry</strong></td>
-																	<td width="103">Manufacturing</td>
-																	<td width="359">75 lakh to 15 crore</td>
-																	<td width="270">31 to 120</td>
-																	</tr>
-																	<tr style="background-color: #f9f9f9;">
-																	<td width="103">Service</td>
-																	<td width="359">10 lakh to 2 crore</td>
-																	<td width="270">16 to 50</td>
-																	</tr>
-																	<tr style="background-color: #f9f9f9;">
-																	<td style="text-align: center;" rowspan="2" width="40">4.</td>
-																	<td rowspan="2" width="108"><strong>Medium Industry</strong></td>
-																	<td width="103">Manufacturing</td>
-																	<td width="359">15 crore to 50 crore</td>
-																	<td width="270">121 to 300</td>
-																	</tr>
-																	<tr style="background-color: #f9f9f9;">
-																	<td width="103">Service</td>
-																	<td width="359">2 crore to 30 crore</td>
-																	<td width="270">51 to 120</td>
-																	</tr>
-																	<tr style="background-color: #f9f9f9;">
-																	<td style="text-align: center;" rowspan="2" width="40">5.</td>
-																	<td rowspan="2" width="108"><strong>Large Industry</strong></td>
-																	<td width="103">Manufacturing</td>
-																	<td width="359">More than 50 crore</td>
-																	<td width="270">More than 300</td>
-																	</tr>
-																	<tr style="background-color: #f9f9f9;">
-																	<td width="103">Service</td>
-																	<td width="359">More than 30 crore</td>
-																	<td width="270">More than 120</td>
-																	</tr>
-																	</tbody>
-																	</table>
-																	<strong>Source: National Industrial policy(2016)</strong>
-																	
-																	</div>
-																	</div>
-																	</div>
-																	<!-- End of main container -->
 
-															</div>
-															<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo2">SME REFINANCE SHCMES</button>
-															<div id="demo2" class="collapse">
-																<p style="background-color: #f9f9f9;">Bangladesh Bank has disbursed loans amounting to Tk 5,831.39 crore as of April 30, 2017 from its seven refinance schemes for the country’s disadvantaged entrepreneurs, which has played an important role in raising the capacity of small and medium enterprises.
 
-																	The majority of clients have taken the credit from the schemes with a lower interest rate of<strong> 8 to 9 percent </strong>that has help the entrepreneurs to open new businesses or to expand the existing ones.
-																	Under the refinance schemes, banks disburse loans to their clients from their own sources after which they get the amounts from the BB.
-																	
-																	<strong>The central bank provides the fund to banks with an interest rate of five per cent and they (banks) in most of the cases add three to four per cent on the rate while disbursing the loans to their clients.</strong>
-																	
-																	The BB is now operating seven refinance schemes under its SME and special programmes department.
-																	The Asian Development Bank and the Japan International Cooperation Agency have given financial support to two of the seven schemes.
-																	
-																	The central bank introduced the refinance schemes with the aim of bringing the underprivileged entrepreneurs under the banking system.
-																	
-																	The BB’s <strong>refinance schemes</strong> under the <strong>SME and special programmes department (SMESPD)</strong> are:</p>
-															<ol>
-																<li style="color: blue; cursor: pointer;"><a href="http://localhost:8085/wordpress/agrorefinance/">Refinance scheme for setting up agro-based product processing industries in rural areas</a></li>
-																<li style="color: blue; cursor: pointer;"><a href=" http://localhost:8085/wordpress/greenrefinance/">Small enterprise scheme</a></li>
-																<li style="background-color: #f9f9f9;">Refinance scheme for Shariah-based financing in agro-based industry,</li>
-																<li style="background-color: #f9f9f9;">Refinance scheme for new entrepreneurs in cottage, micro and small enterprise sector,</li>
-																<li style="background-color: #f9f9f9;">Medium-sized enterprise development project and</li>
-																<li style="background-color: #f9f9f9;">Financial sector project for development of SME and</li>
-																<li style="background-color: #f9f9f9;">Urban building safety project.</li>
-																<li style="background-color: #f9f9f9;">Refinance Scheme for Green Products/Initiatives</li>
-																	<li  style="color: blue; cursor: pointer;"><a href="http://localhost:8085/wordpress/tsl_jica_fdr/ ">JICA 2 STEP LOAN FOR FDI PROMOTION IN BANGLADESH</a></li>
-															</ol>
+        @yield('content')
+        <footer>
+            <div class="container">
+                <div class="footer-last-line">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>&copy; COPYRIGHT 2019 Optima Solutions</p>
+                        </div>
+                        <div class="col-md-6">
+                            <nav class="footer-nav">
+                                <ul>
+                                    <li><a href="{{ URL::to('/home')}}">Developed By Optima Solutions </a></li>
 
-															</div>
-															<button type="button" class="btn btn-info" >REQUIRED DOCUMENTS FOR APPLYING A LOAN</button>
-												   </ol>
-												
-												</div>
+                                    <li><a href="{{ URL::to('/contact')}}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End footer -->
 
-											</div>
-										</div>
-									</div>
-								</li>
+    </div>
+    <!-- End Container -->
 
-								
-							<li class="drop"><a class="features" href="{{ URL::to('apply/for/loan')}}">Apply for loan</a></li>
-							<li><a class="travel" href="{{ URL::to('contact')}}">Contact  </a></li>
-							</ul>
-							
-						</div>
-						<!-- /.navbar-collapse -->
-					</div>
-				</div>
-				<!-- End navbar list container -->
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
 
-			</nav>
-			<!-- End Bootstrap navbar -->
 
-		</header>
-		<!-- End Header -->
-		<br>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.migrate.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.bxslider.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.ticker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.imagesloaded.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.isotope.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/retina-1.1.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/plugins-scroll.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/script.js') }}"></script>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
-		@yield('content')
-		<br>
 
-		<!-- footer 
-			================================================== -->
-		<footer>
-			<div class="container">
-				<div class="footer-widgets-part">
-					<div class="row">
-						<div class="col-md-3">
-							<div class="widget text-widget">
-								<h1>About</h1>
-								<p>SME Banglades is an accomplishment of Optima Solution, a dedicated team for developing SMEs of the country and contribute to our journey to developing economy.</p>
-								
-							</div>
-							
-						</div>
-						@php
-							$data = DB::table('sme_blogs')->where('approved', 2)->orderBy('id', 'DESC')->paginate(3);
-						@endphp
-						
-						<div class="col-md-4">
-							<div class="widget categories-widget">
-								<h1>Hot Categories</h1>
-								<ul class="category-list">
-									
-									<li>
-									<a href="#">Bankers News  <span>{{ DB::table('sme_blogs')->where('approved', 1)->where('cat_id', 3)->orderBy('id', 'DESC')->count()}}</span></a>
+    <script>
+        //Get the button
+        var mybutton = document.getElementById("myBtn");
 
-									</li>
-									<li>
-									<a href="#">Fashion News  <span>{{ DB::table('sme_blogs')->where('approved', 1)->where('cat_id', 2)->orderBy('id', 'DESC')->count()}}</span></a>
-									</li>
-									<li>
-									<a href="#">Blog News   <span>{{ DB::table('sme_blogs')->where('approved', 1)->where('cat_id', 4)->orderBy('id', 'DESC')->count()}}</span></a>
-									</li>
-									<li>
-									<a href="#">Technology News   <span>{{ DB::table('sme_blogs')->where('approved', 1)->where('cat_id', 1)->orderBy('id', 'DESC')->count()}}</span></a>
-									</li>
-									
-								</ul>
-							</div>
-						</div>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
 
-						<div class="col-md-3">
-								<div class="widget posts-widget">
-									<p style="color:aqua">advertisement</p>
-								</div>
-							</div>
-						
-					</div>
-				</div>
-				<div class="footer-last-line">
-					<div class="row">
-						<div class="col-md-6">
-							<p>&copy; COPYRIGHT 2019 Optima Solutions</p>
-						</div>
-						<div class="col-md-6">
-							<nav class="footer-nav">
-								<ul>
-								<li><a href="{{ URL::to('/home')}}">Developed By Optima Solutions </a></li>
-									
-								<li><a href="{{ URL::to('/contact')}}">Contact</a></li>
-								</ul>
-							</nav>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-		<!-- End footer -->
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
 
-	</div>
-	<!-- End Container -->
-	
-	<script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/jquery.migrate.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/jquery.bxslider.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/jquery.ticker.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/jquery.imagesloaded.min.js') }}"></script>
-  <script type="text/javascript" src="{{ asset('assets/js/jquery.isotope.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/retina-1.1.0.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/plugins-scroll.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('assets/js/script.js') }}"></script>
-	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
 
-	
-<script>
-		//Get the button
-		var mybutton = document.getElementById("myBtn");
-		
-		// When the user scrolls down 20px from the top of the document, show the button
-		window.onscroll = function() {scrollFunction()};
-		
-		function scrollFunction() {
-		  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-			mybutton.style.display = "block";
-		  } else {
-			mybutton.style.display = "none";
-		  }
-		}
-		
-		// When the user clicks on the button, scroll to the top of the document
-		function topFunction() {
-		  document.body.scrollTop = 0;
-		  document.documentElement.scrollTop = 0;
-		}
-		</script>
+    <style>
+        #myBtn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 4px;
+        }
 
-		<style>
-		
-		#myBtn {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: red;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 4px;
-}
+        #myBtn:hover {
+            background-color: #555;
+        }
+    </style>
 
-#myBtn:hover {
-  background-color: #555;
-}
-		</style>
+    <!-- Modal -->
+    <div class="modal fade" style="z-index: 999999" id="voter_id" tabindex="-1" role="dialog" aria-labelledby="voter_id" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="voter_id">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ URL::to('/voter/passcode/change') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Enter Your Previous Passcode</label>
+                            <input type="text" name="pre_pass_code" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Enter Your New Passcode </label>
+                            <input type="text" name="con_pass_code" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Change Passcode Now</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </body>
+
+
 
 
 </html>

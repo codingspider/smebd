@@ -1,7 +1,17 @@
 <?php
 
-Route::get('/', 'HomeController@index');
+Route::get('/', function(){
+    return view ('index');
+});
 
+Route::get('/news', 'HomeController@index');
+Route::get('/show/vote/form', 'VoteController@index');
+Route::post('/check/auth/vote/form', 'VoteController@voter_validation');
+Route::post('/voter/passcode/change', 'VoteController@voter_passcode_change');
+
+Route::post('/president/vote/submited', 'VoteController@store')->name('vote-submit');
+
+Route::get('/post/by/user/{news_provider}', 'HomeController@post_by');
 Route::get('sme/bankers/news/details/{id}', 'DetailsController@bankers_news');
 Route::get('top/stories/{id}', 'DetailsController@top_stories');
 Route::get('breaking/news/details/{id}', 'DetailsController@breaking_news');
@@ -19,20 +29,30 @@ Route::get('news/details/breaking/news/{id}', 'NewsController@news_breaking');
 Route::get('sme/all/blog/news', 'NewsController@blog_post');
 
 
-
-
 Route::get('news/details/news/approve/{id}', 'NewsController@news_approve_done');
+Route::get('news/details/news/pending/{id}', 'NewsController@news_pending_done');
+
 Route::get('news/details/news/arcive/{id}', 'NewsController@news_archive_done');
+Route::get('news/details/news/unarcive/{id}', 'NewsController@news_unarcive_done');
+
+
 Route::get('news/details/news/delete/{id}', 'NewsController@news_delete');
 Route::get('sme/archive', 'NewsController@news_archive');
 Route::get('contact', 'NewsController@contact_create');
+Route::get('new/news/view', 'NewsController@new_news');
+Route::get('new/news/edit/{id}', 'NewsController@new_news_edit');
+Route::get('/new/news/delete/{id}', 'NewsController@new_news_delete');
+Route::post('news/update', 'NewsController@new_news_update');
+
 
 Route::post('/newsletter/post', 'NewsController@store');
+
+
 
 Route::post ('/user/register', 'LoginController@register');
 
 
-
+Route::get('sme/loan/process', 'LoanController@form')->middleware('auth');
 Route::get('apply/for/loan', 'LoanController@form')->middleware('auth');
 
 Route::get('list/loan/request', 'LoanController@loan_request');
@@ -44,7 +64,11 @@ Route::get('list/loan/delete/{id}', 'LoanController@loan_request_delete');
 
 Route::post('loan/aplication/form/submit', 'LoanController@create');
 
+Route::get('/catagory/{id}', 'HomeController@catagory');
 
+Route::get('/tours_travels', 'HomeController@tours_travels');
+
+Route::post('/search', 'HomeController@search');
 
 //Clear Cache facade value:
 Route::get('/clear-cache', function() {

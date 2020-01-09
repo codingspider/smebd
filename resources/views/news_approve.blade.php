@@ -1,7 +1,7 @@
 <!-- First you need to extend the CB layout -->
 @extends('crudbooster::admin_template')
 @section('content')
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title></title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -42,12 +42,13 @@
     <table  class="table table-bordered data-table">
         <thead bgcolor="#00FF00">
             <tr >
-                <th>No</th>
-                <th>Business Name</th>
-                <th>Business Address</th>
-                <th>Loan Type </th>
-                <th>Loan Amount </th>
-                <th>Loan Status</th>
+               <th>No</th>
+                <th>Headline</th>
+                <th>News Source</th>
+                <th>News Provider</th>
+                
+                <th>Created At</th>
+                <th>News Status </th>
                 <th width="100px">Action</th>
             </tr>
         </thead>
@@ -55,9 +56,7 @@
         </tbody>
     </table>
 </div>
-   
-</body>
-   
+
 <script type="text/javascript">
   $(function () {
     
@@ -78,4 +77,8 @@
     
   });
 </script>
+   
+</body>
+   
+
 @endsection

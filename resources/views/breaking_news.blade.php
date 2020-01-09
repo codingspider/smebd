@@ -20,7 +20,7 @@
                         <h1>{{$breaking_news->headline}}</h1>
                             <ul class="post-tags">
                                 <li><i class="fa fa-clock-o"></i>{{ date('d-m-Y', strtotime($breaking_news->created_at))}}</li>
-                                <li><i class="fa fa-user"></i>by <a href="#">{{$breaking_news->news_provider}}</a></li>
+                                <li><i class="fa fa-user"></i>by <a href="{{ URL::to('/post/by/user')}}">{{$breaking_news->news_provider}}</a></li>
                             
                             </ul>
                         </div>

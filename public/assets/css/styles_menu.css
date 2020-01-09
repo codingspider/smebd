@@ -13,7 +13,7 @@
 
 	/* The container */
 	#cssmenu  > ul {
-		display: block;
+		display: inline;
 		position: relative;
 		width: 150px;
 	}

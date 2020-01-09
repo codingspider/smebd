@@ -36,8 +36,8 @@
                         </div>
             </div> <!-- form-group// -->
             @php
-            $data = DB::table('categories')->get();
-        @endphp
+                $data = DB::table('menus')->where('is_catagory','1')->orderBy('title', 'asc')->get();
+            @endphp
         <div class="col-md-8">
                 <div  class="form-group row">
                         <label style="color:white"  for="loan_type" class="col-md-3 col-form-label text-md-right">{{ __('Category Name') }}</label>
@@ -47,7 +47,7 @@
                                     <option value="select">Select One Category First </option>
                                 @foreach ($data as $item)
                                
-                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            <option value="{{ $item->id }}">{{ $item->title }}</option>
                                 @endforeach
                                 
                                

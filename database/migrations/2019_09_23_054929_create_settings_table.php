@@ -21,7 +21,7 @@ class CreateSettingsTable extends Migration
             $table->string('ceo');
             $table->string('email');
             $table->string('phone');
-            $table->timestamps();1
+            $table->timestamps();
         });
     }
 
