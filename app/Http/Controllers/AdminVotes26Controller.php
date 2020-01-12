@@ -330,8 +330,6 @@
 
 	    }
 
-
-
     //By the way, you can still create your own method in here... :)
 
     public function getIndex()
@@ -344,15 +342,49 @@
         $data['page_title'] = 'Vote  Data';
         //$data['result'] = DB::table('votes')->orderby('id', 'desc')->paginate(10);
 
-        $data['result'] = DB::table('votes')
+        $data = DB::table('votes')
             ->leftJoin('canditates', 'canditates.id', '=', 'votes.presidents')
             ->select('votes.*', 'canditates.name as cname')
-            //->where('votes.presidents', 2)
             ->whereNotNull('presidents')
+            ->paginate(10);
+        $vicepresident = DB::table('votes')
+            ->leftJoin('canditates', 'canditates.id', '=', 'votes.vicepresidents')
+            ->select('votes.*', 'canditates.name as vname')
             ->whereNotNull('vicepresidents')
             ->paginate(10);
+
+            $president1 = DB::table('votes')
+            ->join('canditates', 'canditates.id', '=', 'votes.presidents')
+            ->select('votes.*', 'canditates.name as pone')
+            ->where('presidents',72)->first();
+
+            $president2 = DB::table('votes')
+            ->join('canditates', 'canditates.id', '=', 'votes.presidents')
+            ->select('votes.*', 'canditates.name as pone')
+            ->where('presidents',73)->first();
+            $president3 = DB::table('votes')
+            ->join('canditates', 'canditates.id', '=', 'votes.presidents')
+            ->select('votes.*', 'canditates.name as pone')
+            ->where('presidents',74)->first();
+
+
+            $vaicepresident1 = DB::table('votes')
+            ->join('canditates', 'canditates.id', '=', 'votes.vicepresidents')
+            ->select('votes.*', 'canditates.name as vname')
+            ->where('vicepresidents', 80)->first();
+
+            $vaicepresident2 = DB::table('votes')
+            ->join('canditates', 'canditates.id', '=', 'votes.vicepresidents')
+            ->select('votes.*', 'canditates.name as vname')
+            ->where('vicepresidents',73)->first();
+            $vaicepresident3 = DB::table('votes')
+            ->join('canditates', 'canditates.id', '=', 'votes.vicepresidents')
+            ->select('votes.*', 'canditates.name as vname')
+            ->where('vicepresidents',74)->first();
+
+
         //Create a view. Please use `cbView` method instead of view method from laravel.
-        $this->cbView('custom_vote_index', $data);
+        $this->cbView('custom_vote_index', compact('vicepresident','data', 'president1', 'president2', 'president3', 'vaicepresident1', 'vaicepresident2', 'vaicepresident3'));
     }
 
 

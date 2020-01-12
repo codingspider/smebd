@@ -8,8 +8,19 @@ Route::get('/news', 'HomeController@index');
 Route::get('/show/vote/form', 'VoteController@index');
 Route::post('/check/auth/vote/form', 'VoteController@voter_validation');
 Route::post('/voter/passcode/change', 'VoteController@voter_passcode_change');
+Route::post('voter/result/publish', 'VoteController@voter_result_publish');
+Route::get('cabinate/secretary/vote/result', 'VoteController@cabinate_result_publish');
+Route::get('cultural/secretary/vote/result', 'VoteController@cultural_result_publish');
+Route::get('information/secretary/vote/result', 'VoteController@information_result_publish');
+Route::get('organising/secretary/vote/result', 'VoteController@organising_result_publish');
+Route::get('treasurer/secretary/vote/result', 'VoteController@treasurer_result_publish');
+Route::get('general/secretary/vote/result', 'VoteController@general_secretary_result_publish');
+Route::get('joint/secretary/vote/result', 'VoteController@joint_secretary_result_publish');
+Route::get('vice/president/vote/result', 'VoteController@vice_president_result_publish');
+Route::get('president/vote/result', 'VoteController@president_result_publish');
 
 Route::post('/president/vote/submited', 'VoteController@store')->name('vote-submit');
+Route::post('/vote/update/', 'VoteController@vote_update');
 
 Route::get('/post/by/user/{news_provider}', 'HomeController@post_by');
 Route::get('sme/bankers/news/details/{id}', 'DetailsController@bankers_news');

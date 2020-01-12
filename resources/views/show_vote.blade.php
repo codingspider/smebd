@@ -54,7 +54,7 @@
                         @foreach($president as $value)
                         <div class="col-md-3">
                             <div class="card">
-                                <img class="rounded mx-auto d-block" src="https://p1.hiclipart.com/preview/565/751/756/man-avatar-male-silhouette-user-profile-gentleman-suit-head-png-clipart.jpg" style="width: 200px" alt="Responsive image">
+                                <img class="rounded mx-auto d-block" src="{{ asset($value->images) }}" style="width: 200px" alt="Responsive image">
                                 <br>
                                 <div class="card-block">
                                     <h6 style="font-size: 14px;">Name: Mr/s {{ $value->name }}</h6>
@@ -84,7 +84,7 @@
                         @foreach($vicepresident as $vpresident)
                         <div class="col-md-3">
                             <div class="card">
-                                <img class="rounded mx-auto d-block" src="https://p1.hiclipart.com/preview/565/751/756/man-avatar-male-silhouette-user-profile-gentleman-suit-head-png-clipart.jpg" style="width: 200px" alt="Responsive image">
+                                <img class="rounded mx-auto d-block" src="{{ asset($value->images) }}" style="width: 200px" alt="Responsive image">
                                 <br>
                                 <div class="card-block">
                                     <h6 style="font-size: 14px;">Name: Mr/s {{ $vpresident->name }}</h6>
@@ -112,7 +112,7 @@
                         @foreach($genral_secretary as $gene_secretary)
                         <div class="col-md-3">
                             <div class="card">
-                                <img class="rounded mx-auto d-block" src="https://p1.hiclipart.com/preview/565/751/756/man-avatar-male-silhouette-user-profile-gentleman-suit-head-png-clipart.jpg" style="width: 200px" alt="Responsive image">
+                                <img class="rounded mx-auto d-block" src="{{ asset($value->images) }}" style="width: 200px" alt="Responsive image">
                                 <br>
                                 <div class="card-block">
                                     <h6 style="font-size: 14px;">Name: Mr/s {{ $gene_secretary->name }}</h6>
@@ -139,7 +139,7 @@
                         @foreach($joint_secretary as $joint_sec)
                         <div class="col-md-3">
                             <div class="card">
-                                <img class="rounded mx-auto d-block" src="https://p1.hiclipart.com/preview/565/751/756/man-avatar-male-silhouette-user-profile-gentleman-suit-head-png-clipart.jpg" style="width: 200px" alt="Responsive image">
+                                <img class="rounded mx-auto d-block" src="{{ asset($value->images) }}" style="width: 200px" alt="Responsive image">
                                 <br>
                                 <div class="card-block">
                                     <h6 style="font-size: 14px;">Name: Mr/s {{ $joint_sec->name }}</h6>
@@ -167,7 +167,7 @@
                         @foreach($treasurer as $tresure)
                         <div class="col-md-3">
                             <div class="card">
-                                <img class="rounded mx-auto d-block" src="https://p1.hiclipart.com/preview/565/751/756/man-avatar-male-silhouette-user-profile-gentleman-suit-head-png-clipart.jpg" style="width: 200px" alt="Responsive image">
+                                <img class="rounded mx-auto d-block" src="{{ asset($value->images) }}" style="width: 200px" alt="Responsive image">
                                 <br>
                                 <div class="card-block">
                                     <h6 style="font-size: 14px;">Name: Mr/s {{ $tresure->name }}</h6>
@@ -194,7 +194,7 @@
                         @foreach($organizing_secretary as $organizing_sec)
                         <div class="col-md-3">
                             <div class="card">
-                                <img class="rounded mx-auto d-block" src="https://p1.hiclipart.com/preview/565/751/756/man-avatar-male-silhouette-user-profile-gentleman-suit-head-png-clipart.jpg" style="width: 200px" alt="Responsive image">
+                                <img class="rounded mx-auto d-block" src="{{ asset($value->images) }}" style="width: 200px" alt="Responsive image">
                                 <br>
                                 <div class="card-block">
                                     <h6 style="font-size: 14px;">Name: Mr/s {{ $organizing_sec->name }}</h6>
@@ -221,7 +221,7 @@
                         @foreach($information_secretary as $information_sec)
                         <div class="col-md-3">
                             <div class="card">
-                                <img class="rounded mx-auto d-block" src="https://p1.hiclipart.com/preview/565/751/756/man-avatar-male-silhouette-user-profile-gentleman-suit-head-png-clipart.jpg" style="width: 200px" alt="Responsive image">
+                                <img class="rounded mx-auto d-block" src="{{ asset($value->images) }}" style="width: 200px" alt="Responsive image">
                                 <br>
                                 <div class="card-block">
                                     <h6 style="font-size: 14px;">Name: Mr/s {{ $information_sec->name }}</h6>
@@ -248,7 +248,7 @@
                         @foreach($cultural_secretary as $cultural_sec)
                         <div class="col-md-3">
                             <div class="card">
-                                <img class="rounded mx-auto d-block" src="https://p1.hiclipart.com/preview/565/751/756/man-avatar-male-silhouette-user-profile-gentleman-suit-head-png-clipart.jpg" style="width: 200px" alt="Responsive image">
+                                <img class="rounded mx-auto d-block" src="{{ asset($value->images) }}" style="width: 200px" alt="Responsive image">
                                 <br>
                                 <div class="card-block">
                                     <h6 style="font-size: 14px;">Name: Mr/s {{ $cultural_sec->name }}</h6>
@@ -275,7 +275,7 @@
                         @foreach($cabinate_secretary as $cabinate_sec)
                         <div class="col-md-3">
                             <div class="card">
-                                <img class="rounded mx-auto d-block" src="https://p1.hiclipart.com/preview/565/751/756/man-avatar-male-silhouette-user-profile-gentleman-suit-head-png-clipart.jpg" style="width: 200px" alt="Responsive image">
+                                <img class="rounded mx-auto d-block" src="{{ asset($value->images) }}" style="width: 200px" alt="Responsive image">
                                 <br>
                                 <div class="card-block">
                                     <h6 style="font-size: 14px;">Name: Mr/s {{ $cabinate_sec->name }}</h6>
@@ -305,7 +305,7 @@
                         @foreach($executive_member as $executive_mem)
                         <div class="col-md-3">
                             <div class="card">
-                                <img class="rounded mx-auto d-block" src="https://p1.hiclipart.com/preview/565/751/756/man-avatar-male-silhouette-user-profile-gentleman-suit-head-png-clipart.jpg" style="width: 200px" alt="Responsive image">
+                                <img class="rounded mx-auto d-block" src="{{ asset($value->images) }}" style="width: 200px" alt="Responsive image">
                                 <br>
                                 <div class="card-block">
                                     <h6 style="font-size: 14px;">Name: Mr/s {{ $executive_mem->name }}</h6>

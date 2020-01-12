@@ -183,7 +183,7 @@ $categories = Menu::with('children')->where('parent_id','=',0)->get();
     <div style="display: none;" class="pop-outer">
         <div class="pop-inner">
             <button class="close">X</button>
-            <h2>Voting Form</h2>
+            <h2>Voter Access Form</h2>
             <form action="{{ URL::to('/check/auth/vote/form') }}" method="POST">
                 @csrf
                 <div class="form-group">
@@ -221,6 +221,7 @@ $categories = Menu::with('children')->where('parent_id','=',0)->get();
                                     </li>
                                     <li><a style="color:springgreen" class="open" href="#">Vote</a></li>
                                     <li><a style="color:springgreen" type="button" data-toggle="modal" data-target="#voter_id" href="#">Voter Passcode Change</a></li>
+                                    <li><a style="color:springgreen" type="button" data-toggle="modal" data-target="#voter_result" href="#">Vote Result Publish </a></li>
                                     @guest
                                     <li class="nav-item">
                                         <a style="color:springgreen" class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -420,7 +421,7 @@ $categories = Menu::with('children')->where('parent_id','=',0)->get();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="voter_id">Modal title</h5>
+                    <h5 class="modal-title" id="voter_id">Change your default passcode</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -438,6 +439,48 @@ $categories = Menu::with('children')->where('parent_id','=',0)->get();
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Change Passcode Now</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" style="z-index: 999999" id="voter_result" tabindex="-1" role="dialog" aria-labelledby="voter_result" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="voter_result">Vote Result Publish </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ URL::to('/voter/result/publish') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="exampleInputEmail1">Enter Your Passcode</label>
+                                <input type="password" name="pass_code" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputPassword1">Enter Your Passcode </label>
+                                <input type="password" name="pass_code2" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputEmail1">Enter Your Passcode</label>
+                                <input type="password" name="pass_code3" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleInputPassword1">Enter Your Passcode </label>
+                                <input type="password" name="pass_code4" class="form-control" id="exampleInputPassword1">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Publish Vote Result Now</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
                         </div>
