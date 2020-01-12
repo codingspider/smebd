@@ -102,7 +102,11 @@
 
 /* #Links
 ================================================== */
+<<<<<<< HEAD
 	a, a:visited { text-decoration: none; color: #cc00cc; }
+=======
+	a, a:visited { text-decoration: none; }
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
 	a:hover, a:focus { color: #e74c3c;}
 	p a, p a:visited { line-height: inherit; text-decoration: none;}
 	a:focus{

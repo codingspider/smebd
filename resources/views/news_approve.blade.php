@@ -46,9 +46,14 @@
                 <th>Headline</th>
                 <th>News Source</th>
                 <th>News Provider</th>
+<<<<<<< HEAD
                 
                 <th>Created At</th>
                 <th>News Status </th>
+=======
+                <th>News Status </th>
+                <th>Created At</th>
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
                 <th width="100px">Action</th>
             </tr>
         </thead>

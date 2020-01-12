@@ -822,7 +822,11 @@ h1 span:after  {
 	text-transform:uppercase;
 	font-size: 17px;
 	line-height:22px;
+<<<<<<< HEAD
 	/*color:#737373;*/
+=======
+	color:#737373;
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
 }
 #about .head-subtext {
 	padding-bottom:30px;
@@ -1731,7 +1735,11 @@ path.stroke-thin {
 	display: inline-block;
 	font-family: 'Lato', sans-serif;
 	font-weight:400;
+<<<<<<< HEAD
 	font-size: 14px; 
+=======
+	font-size: 12px; 
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
 	outline: none;
 	color: #706e6e;
 	text-decoration: none;
@@ -1750,7 +1758,11 @@ path.stroke-thin {
 	content:'::::';
 	font-family: 'Lato', sans-serif;
 	font-weight:400;
+<<<<<<< HEAD
 	font-size: 14px; 
+=======
+	font-size: 12px; 
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
 	color: #706e6e;
 	padding-left:20px;
 	opacity:.5;

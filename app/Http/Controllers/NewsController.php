@@ -63,6 +63,7 @@ class NewsController extends Controller
                             ->addColumn('action', function($row){
 
                                 $x='';
+<<<<<<< HEAD
                                     if($row->approved==1 || $row->approved==2){
                                         $x.='<a href="news/unarcive/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-remove"></i>Archived</a><a href="news/pending/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Approved</a> <a href="top/news/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i>Top News</a><a href="breaking/news/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Breaking </a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
                                     }
@@ -74,6 +75,27 @@ class NewsController extends Controller
                                         $x.='  <a href="news/arcive/'.$row->id.'" class="btn btn-xs btn-secondary"><i class="glyphicon glyphicon-remove"></i>Unarchived</a><a href="news/approve/'.$row->id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-ok"></i> Pending </a> <a href="top/news/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i>Top News</a><a href="breaking/news/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Breaking </a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
 
                                     }
+=======
+                                    if($row->approved==1){
+                                        $x.='  <a href="news/pending/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Approved</a> <a href="top/news/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i>Top News</a><a href="breaking/news/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Breaking </a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                                    }
+
+                                    if($row->approved==3){
+                                        $x.='  <a href="news/approve/'.$row->id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-ok"></i> Pending </a> <a href="top/news/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i>Top News</a><a href="breaking/news/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Breaking </a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                                    }
+
+
+                                    if ($row->approved==2) {
+                                        $x.='  <a href="news/unarcive/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-remove"></i>Archived</a> <a href="top/news/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i>Top News</a><a href="breaking/news/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Breaking </a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                                    }
+                                    if ($row->approved==4) {
+                                        $x.='  <a href="news/arcive/'.$row->id.'" class="btn btn-xs btn-secondary"><i class="glyphicon glyphicon-remove"></i>Unarchived</a> <a href="top/news/'.$row->id.'" class="btn btn-xs btn-info"><i class="glyphicon glyphicon-ok"></i>Top News</a><a href="breaking/news/'.$row->id.'" class="btn btn-xs btn-success"><i class="glyphicon glyphicon-ok"></i> Breaking </a> <a href="news/delete/'.$row->id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+                                    }
+
+
+
+
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
                                      return '  '.$x.'';
                             })
                             ->rawColumns(['action'])
@@ -91,17 +113,29 @@ class NewsController extends Controller
                     'approved' => 1,
                 ]);
                 return back()->with('success', 'News Approved Succesfully! ');
+<<<<<<< HEAD
 
             }
              public function news_pending_done($id){
                 $data = DB::table('sme_blogs')
 
+=======
+              
+            }
+             public function news_pending_done($id){
+                $data = DB::table('sme_blogs')
+                
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
                 ->where('id', $id)->update([
                     'status' => 'Pending',
                     'approved' => 3,
                 ]);
                 return back()->with('success', 'News Pending Succesfully! ');
+<<<<<<< HEAD
 
+=======
+              
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
             }
             public function news_top($id){
                 $data = DB::table('sme_blogs')
@@ -140,6 +174,16 @@ class NewsController extends Controller
                 ]);
                 return back()->with('success', 'News UnArchived Succesfully! ');
 
+            }
+
+            public function news_unarcive_done ($id){
+                $data = DB::table('sme_blogs')
+                ->where('id', $id)->update([
+                    'status' => 'UnArchived',
+                    'approved' => 4,
+                ]);
+                return back()->with('success', 'News UnArchived Succesfully! ');
+              
             }
             public function news_delete ($id){
                 $data = DB::table('sme_blogs')
@@ -196,10 +240,17 @@ class NewsController extends Controller
 
         public function new_news (Request $request)
         {
+<<<<<<< HEAD
 
         if ($request->ajax()) {
                     $data = DB::table('sme_blogs')
 
+=======
+        
+        if ($request->ajax()) {
+                    $data = DB::table('sme_blogs')
+                    
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
                     ->get();
 
                     return Datatables::of($data)
@@ -218,7 +269,11 @@ class NewsController extends Controller
 
             $news = DB::table('sme_blogs')->where('id', $id)->first();
 
+<<<<<<< HEAD
             return view('custom_edit_view', compact('news'));
+=======
+            return view('custom_edit_view', compact('news')); 
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
         }
 
         public function new_news_delete ($id){
@@ -230,27 +285,45 @@ class NewsController extends Controller
 
         public function new_news_update (Request $request){
 
+<<<<<<< HEAD
             $id = $request->id;
+=======
+            $id = $request->id; 
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
            if ($request->hasFile('image_name')) {
             $image = $request->file('image_name');
             $name = time().'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/uploads');
             $image->move($destinationPath, $name);
+<<<<<<< HEAD
 
         }
 
 
+=======
+            
+        }
+        
+        
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
         DB::table('sme_blogs')->where('id', $id)->update([
             'headline' => $request->headline,
             'short_description' => $request->short_description,
             'detail' => $request->detail,
             'news_source' => $request->news_source,
+<<<<<<< HEAD
             'source_url' => $request->source_url,
+=======
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
             'news_provider' => $request->news_provider,
             'cat_id' => $request->category_id,
             'image_name' => $name,
         ]);
+<<<<<<< HEAD
 
+=======
+       
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
         return back ()->with('success','News Updated sucessfully');
         }
 

@@ -27,13 +27,18 @@
                         </div>
             </div> <!-- form-group// -->
             @php
+<<<<<<< HEAD
                 $data = DB::table('menus')->where('is_catagory','1')->orderBy('title', 'asc')->get();
+=======
+                $data = DB::table('categories')->get();
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
             @endphp
             <div class="col-md-8">
                     <div  class="form-group row">
                             <label style="color:black"  for="loan_type" class="col-md-3 col-form-label text-md-right">{{ __('Category Name') }}</label>
 
                             <div class="col-md-8">
+<<<<<<< HEAD
                                     
                                 <select name="category_id" class="form-control" id="sel1">
                                         <option value="0" >Select One Category First </option>
@@ -42,6 +47,13 @@
                                         $selected = $news->cat_id == $item->id ? 'selected' : '';
                                    @endphp
                                 <option {{ $selected }} value="{{ $item->id }}">{{ $item->title }}</option>
+=======
+                                <select name="category_id" class="form-control" id="sel1">
+                                        <option value="0">Select One Category First </option>
+                                    @foreach ($data as $item)
+                                   
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
                                     @endforeach
                                   </select>
                             </div>
@@ -84,6 +96,7 @@
                             <label style="color:black" for="news_source" class="col-md-3 col-form-label text-md-right">{{ __('NEWS Source') }}</label>
 
                             <div class="col-md-6">
+<<<<<<< HEAD
                                 <input id="news_source" type="text" class="form-control" name="news_source" value="{{ $news->news_source }} ">
                             </div>
                         </div>
@@ -94,11 +107,26 @@
 
                             <div class="col-md-6">
                                 <input id="source_url" type="text" class="form-control" name="source_url" value="{{ $news->source_url }} ">
+=======
+                                <input id="email" type="text" class="form-control" name="news_source" value="{{ $news->news_source }} ">
+                            </div>
+                        </div>
+            </div> <!-- form-group// -->
+           
+            
+            <div class="col-md-6">
+                    <div class="form-group row">
+                            <label style="color:black" for="news_provider" class="col-md-3 col-form-label text-md-right">{{ __('News Provider') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="text" class="form-control" name="news_provider" value="{{ $news->news_provider }}">
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
                             </div>
                         </div>
             </div> <!-- form-group// -->
             
             <div class="col-md-6">
+<<<<<<< HEAD
                     <div class="form-group row">
                             <label style="color:black" for="news_provider" class="col-md-3 col-form-label text-md-right">{{ __('News Provider') }}</label>
 
@@ -109,6 +137,8 @@
             </div> <!-- form-group// -->
             
             <div class="col-md-6">
+=======
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
                 <div class="form-group row">
                         <label style="color:black" for="image_name" class="col-md-3 col-form-label text-md-right">{{ __('Image') }}</label>
 

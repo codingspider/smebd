@@ -33,23 +33,36 @@
 			$this->col[] = ["label"=>"Parent Id","name"=>"parent_id"];
 			$this->col[] = ["label"=>"Title","name"=>"title"];
 			$this->col[] = ["label"=>"Url","name"=>"url"];
+<<<<<<< HEAD
 			$this->col[] = ["label"=>"is_catagory","name"=>"is_catagory"];
+=======
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
+<<<<<<< HEAD
 			$this->form[] = ['label'=>'Parent Id','name'=>'parent_id','type'=>'select2','width'=>'col-sm-10','datatable'=>'menus,title'];
 			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
 			$this->form[] = ['label'=>'Url','name'=>'url','type'=>'text','validation'=>'required','width'=>'col-sm-10','placeholder'=>'Please enter a valid URL'];
 			$this->form[] = ['label'=>'is_catagory','name'=>'is_catagory','type'=>'text','validation'=>'required','width'=>'col-sm-10','placeholder'=>'0/1'];
+=======
+			$this->form[] = ['label'=>'Parent Id','name'=>'parent_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'menus,title'];
+			$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
+			$this->form[] = ['label'=>'Url','name'=>'url','type'=>'text','validation'=>'required','width'=>'col-sm-10','placeholder'=>'Please enter a valid URL'];
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
 			//$this->form[] = ['label'=>'Parent Id','name'=>'parent_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'menus,title'];
 			//$this->form[] = ['label'=>'Title','name'=>'title','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
+<<<<<<< HEAD
 			//$this->form[] = ['label'=>'Url','name'=>'url','type'=>'text','validation'=>'required','width'=>'col-sm-10','placeholder'=>'Please enter a valid URL'];
 			//$this->form[] = ['label'=>'is_catagory','name'=>'is_catagory','type'=>'text','validation'=>'required','width'=>'col-sm-10','placeholder'=>'0/1'];
+=======
+			//$this->form[] = ['label'=>'Url','name'=>'url','type'=>'text','validation'=>'required|url','width'=>'col-sm-10','placeholder'=>'Please enter a valid URL'];
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
 			# OLD END FORM
 
 			/* 

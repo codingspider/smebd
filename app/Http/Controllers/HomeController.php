@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Menu;
+<<<<<<< HEAD
 use Carbon\Carbon;
 use Auth;
 
+=======
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
 
 class HomeController extends Controller
 {
@@ -56,6 +59,7 @@ class HomeController extends Controller
         
         $Menu =new Menu;
 
+<<<<<<< HEAD
         $categories=$Menu->tree();
 
         return view('home', compact('top','blogs','smes_and_bankers_news', 'fashion_news_admins', 'miscelleneous_news', 'technology_news', 'breaking', 'settings', 'services', 'technology','categories','archive'));
@@ -95,6 +99,11 @@ class HomeController extends Controller
                 $smes_and_bankers_news = DB::table('sme_blogs')->where('cat_id', $request->id)->where('approved', 1)->orderBy('id', 'DESC')->first();
                 //dd($smes_and_bankers_news);
                 return view('noncatagory', compact('smes_and_bankers_news','services','menu_title', 'archive '));} 
+=======
+        $categories = Menu::with('children')->where('parent_id','=',0)->get();
+
+        return view('home', compact('top','blogs','smes_and_bankers_news', 'fashion_news_admins', 'miscelleneous_news', 'technology_news', 'breaking', 'settings', 'services', 'technology','categories'));
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
     }
     
     

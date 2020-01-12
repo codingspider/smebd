@@ -1,5 +1,10 @@
 <?php
 
+<<<<<<< HEAD
+=======
+use App\Menu; 
+
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
 Route::get('/', function(){
     return view ('index');
 });
@@ -46,7 +51,10 @@ Route::get('news/details/news/pending/{id}', 'NewsController@news_pending_done')
 Route::get('news/details/news/arcive/{id}', 'NewsController@news_archive_done');
 Route::get('news/details/news/unarcive/{id}', 'NewsController@news_unarcive_done');
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
 Route::get('news/details/news/delete/{id}', 'NewsController@news_delete');
 Route::get('sme/archive', 'NewsController@news_archive');
 Route::get('contact', 'NewsController@contact_create');
@@ -58,6 +66,12 @@ Route::post('news/update', 'NewsController@new_news_update');
 
 Route::post('/newsletter/post', 'NewsController@store');
 
+<<<<<<< HEAD
+=======
+
+
+Route::post ('/user/register', 'LoginController@register');
+>>>>>>> 32e955ddfc6b66817ecf47a594aab6f9b022b311
 
 
 Route::post ('/user/register', 'LoginController@register');
@@ -120,3 +134,4 @@ Route::get('/config-cache', function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
